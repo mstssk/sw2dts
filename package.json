@@ -3,16 +3,23 @@
   "version": "0.1.0",
   "description": "Generates TypeScript definition file(d.ts) from swagger.json",
   "main": "index.js",
+  "bin": {
+    "sw2dts": "./bin/sw2dts"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mstssk/sw2dts.git"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test/*.js"
   },
   "author": "mstssk",
   "license": "MIT",
   "dependencies": {
+    "commandpost": "^1.0.0",
     "dtsgenerator": "0.6.1"
+  },
+  "devDependencies": {
+    "mocha": "^2.4.5"
   }
 }
