@@ -11,6 +11,9 @@
     "url": "git+https://github.com/mstssk/sw2dts.git"
   },
   "scripts": {
+    "build": "tsconfig -u && tsfmt -r && tsc -p ./",
+    "tslint": "tslint ./src/**/*.ts ./test/**/*.ts",
+    "pretest": "npm run build",
     "test": "mocha test/*.js"
   },
   "author": "mstssk",
@@ -20,6 +23,11 @@
     "dtsgenerator": "0.6.1"
   },
   "devDependencies": {
-    "mocha": "^2.4.5"
+    "dtsm": "^1.1.0",
+    "mocha": "^2.4.5",
+    "tsconfig-cli": "^2.0.0",
+    "tslint": "^3.9.0",
+    "typescript": "^1.8.10",
+    "typescript-formatter": "^2.1.0"
   }
 }

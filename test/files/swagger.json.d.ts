@@ -7,7 +7,7 @@ export interface Dummy {
     note?: string;
     count?: number; // int32
     updatedAt?: string; // date-time
-    ids?: string /* int64 */ [];
+    ids?: string /* int64 */[];
 }
 export interface Image {
     createdAt?: string; // date-time
