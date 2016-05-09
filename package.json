@@ -11,6 +11,7 @@
     "url": "git+https://github.com/mstssk/sw2dts.git"
   },
   "scripts": {
+    "postinstall": "dtsm install",
     "build": "tsconfig -u && tsfmt -r && tsc -p ./",
     "tslint": "tslint ./src/**/*.ts ./test/**/*.ts",
     "pretest": "npm run build",

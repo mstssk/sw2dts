@@ -15,6 +15,9 @@
   "dependencies": {
     "node/node.d.ts": {
       "ref": "6d0e826824da52204c1c93f92cecbc961ac84fa9"
+    },
+    "mocha/mocha.d.ts": {
+      "ref": "6d0e826824da52204c1c93f92cecbc961ac84fa9"
     }
   }
 }
