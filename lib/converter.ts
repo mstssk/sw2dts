@@ -2,7 +2,7 @@
 
 const dtsgen = require("dtsgenerator").default;
 
-export default function(data: { definitions: any }): Promise<string> {
+export default function converter(data: { definitions: any }): Promise<string> {
     let jsonSchemas: {}[] = [];
     for (let title in data.definitions) {
         let schema = data.definitions[title];

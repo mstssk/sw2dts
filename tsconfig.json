@@ -15,13 +15,13 @@
         "lib/**/*.ts",
         "test/**/*.ts",
         "typings/**/*.ts",
-        "node_modules/typescript/lib/lib.es6.d.ts"
+        "node_modules/typescript/lib/lib.es6.d.ts",
+        "!test/fixtures/*"
     ],
     "files": [
         "lib/cli.ts",
         "lib/converter.ts",
         "test/converter.spec.ts",
-        "test/files/swagger.json.d.ts",
         "typings/bundle.d.ts",
         "typings/mocha/mocha.d.ts",
         "typings/node/node.d.ts",
