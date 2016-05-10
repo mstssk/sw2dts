@@ -5,7 +5,7 @@ import converter from "./converter";
 const pkg = require("../package.json");
 
 interface RootOptions {
-    output: string;
+    output: string[];
 }
 
 const root = commandpost
@@ -13,6 +13,7 @@ const root = commandpost
     .version(pkg.version, "-v, --version")
     .option("-o, --output <output_filename>", "Output to file.")
     .action((opts, args) => {
+        const output_filename = opts.output[0];
         let promise: Promise<string> = null;
         if (args.input_filename) {
             promise = fromFile(args.input_filename);
@@ -26,8 +27,8 @@ const root = commandpost
         promise.then(input => {
             return converter(JSON.parse(input));
         }).then(model => {
-            if (opts.output) {
-                fs.writeFileSync(opts.output, model);
+            if (output_filename) {
+                fs.writeFileSync(output_filename, model);
             } else {
                 console.log(model);
             }
