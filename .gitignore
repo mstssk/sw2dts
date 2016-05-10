@@ -1,1 +1,9 @@
+npm-debug.log
+
 node_modules
+typings
+
+lib/**/*.js
+lib/**/*.js.map
+test/**/*.js
+test/**/*.js.map

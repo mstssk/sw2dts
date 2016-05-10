@@ -1,0 +1,30 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es5",
+        "noImplicitAny": true,
+        "removeComments": false,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "sourceMap": true,
+        "inlineSources": true,
+        "newLine": "LF",
+        "noEmitOnError": true
+    },
+    "filesGlob": [
+        "lib/**/*.ts",
+        "test/**/*.ts",
+        "typings/**/*.ts",
+        "node_modules/typescript/lib/lib.es6.d.ts",
+        "!test/fixtures/*"
+    ],
+    "files": [
+        "lib/cli.ts",
+        "lib/converter.ts",
+        "test/converter.spec.ts",
+        "typings/bundle.d.ts",
+        "typings/mocha/mocha.d.ts",
+        "typings/node/node.d.ts",
+        "node_modules/typescript/lib/lib.es6.d.ts"
+    ]
+}
