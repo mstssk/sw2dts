@@ -21,9 +21,11 @@
     "files": [
         "lib/cli.ts",
         "lib/converter.ts",
+        "test/cli.spec.ts",
         "test/converter.spec.ts",
         "typings/bundle.d.ts",
         "typings/mocha/mocha.d.ts",
+        "typings/nexpect/nexpect.d.ts",
         "typings/node/node.d.ts",
         "node_modules/typescript/lib/lib.es6.d.ts"
     ]
