@@ -5,22 +5,29 @@ import converter from "./converter";
 const pkg = require("../package.json");
 
 interface RootOptions {
+    stdin: boolean;
     output: string[];
 }
 
 const root = commandpost
     .create<RootOptions, { input_filename: string }>("sw2dts [input_filename]")
     .version(pkg.version, "-v, --version")
+    .option("--stdin", "Input from standard input.")
     .option("-o, --output <output_filename>", "Output to file.")
     .action((opts, args) => {
         const output_filename = opts.output[0];
         let promise: Promise<string> = null;
-        if (args.input_filename) {
+        if (args.input_filename && opts.stdin) {
+            process.stderr.write("Invalid parameters!\n");
+            process.stderr.write(root.helpText());
+        } else if (args.input_filename) {
             promise = fromFile(args.input_filename);
-        } else if (fs.fstatSync((process.stdin as any).fd).size) {
+        } else if (opts.stdin) {
             promise = fromStdin();
         } else {
             process.stdout.write(root.helpText());
+        }
+        if (promise == null) {
             return;
         }
 
