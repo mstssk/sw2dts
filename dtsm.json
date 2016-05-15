@@ -21,6 +21,12 @@
     },
     "nexpect/nexpect.d.ts": {
       "ref": "8886ae591751e8a8237fa855617745768f0b1bdf"
+    },
+    "mkdirp/mkdirp.d.ts": {
+      "ref": "398bd742115e2b071ab3edf8b543b6df6fa62dc2"
+    },
+    "rimraf/rimraf.d.ts": {
+      "ref": "398bd742115e2b071ab3edf8b543b6df6fa62dc2"
     }
   }
 }
