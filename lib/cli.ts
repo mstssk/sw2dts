@@ -7,6 +7,7 @@ const pkg = require("../package.json");
 interface RootOptions {
     stdin: boolean;
     output: string[];
+    namespace: string[];
 }
 
 const root = commandpost
@@ -14,6 +15,7 @@ const root = commandpost
     .version(pkg.version, "-v, --version")
     .option("--stdin", "Input from standard input.")
     .option("-o, --output <output_filename>", "Output to file.")
+    .option("-n, --namespace <namespace>", "Use namespace.")
     .action((opts, args) => {
         const output_filename = opts.output[0];
         let promise: Promise<string> = null;
@@ -32,7 +34,8 @@ const root = commandpost
         }
 
         promise.then(input => {
-            return converter(JSON.parse(input));
+            let namespace = opts.namespace[0];
+            return converter(JSON.parse(input), { namespace });
         }).then(model => {
             if (output_filename) {
                 fs.writeFileSync(output_filename, model);

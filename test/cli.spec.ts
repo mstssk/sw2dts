@@ -50,6 +50,21 @@ describe("CLI", () => {
             });
     });
 
+    it("file to stdout with namespace", (done) => {
+        const swaggerJsonPath = path.resolve(fixturesDir, "swagger.json");
+        const expectedPath = path.resolve(fixturesDir, "namespace1.d.ts");
+        nexpect
+            .spawn("node", [sw2dtsPath, swaggerJsonPath, "-n", "foo"])
+            .run((err, stdout, exit) => {
+                const actual = stdout.join("\n") + "\n";
+                const expected = fs.readFileSync(expectedPath).toString();
+                assert.equal(actual, expected);
+                assert(!err);
+                assert(exit === 0);
+                done();
+            });
+    });
+
     it("stdin to stdout", (done) => {
         const testShell = path.resolve(fixturesDir, "stdin2stdout.sh");
         const expectedPath = path.resolve(fixturesDir, "swagger.json.d.ts");
