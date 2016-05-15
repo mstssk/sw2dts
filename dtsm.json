@@ -18,6 +18,9 @@
     },
     "mocha/mocha.d.ts": {
       "ref": "6d0e826824da52204c1c93f92cecbc961ac84fa9"
+    },
+    "nexpect/nexpect.d.ts": {
+      "ref": "8886ae591751e8a8237fa855617745768f0b1bdf"
     }
   }
 }
