@@ -39,7 +39,8 @@ const root = commandpost
             } else {
                 console.log(model);
             }
-        });
+            process.exit(0);
+        }).catch(errorHandler);
     });
 
 commandpost
@@ -49,18 +50,22 @@ commandpost
 function fromStdin(): Promise<string> {
     return new Promise((resolve, reject) => {
         let data = "";
-        process.stdin.setEncoding("utf-8");
-        process.stdin.on("readable", () => {
-            let chunk: any;
-            while (chunk = process.stdin.read()) {
-                if (typeof chunk === "string") {
-                    data += chunk;
-                }
+        let resolved = false;
+        let callback = () => {
+            if (resolved) {
+                return;
             }
-        });
-        process.stdin.on("end", () => {
-            resolve(data);
-        });
+            if (data) {
+                resolved = true;
+                resolve(data);
+            } else {
+                throw new Error("Timeout, or stdin is empty.");
+            }
+        };
+        process.stdin.setEncoding("utf-8");
+        process.stdin.on("data", (chunk: any) => data += chunk);
+        process.stdin.on("end", callback);
+        setTimeout(callback, 1000);
     });
 }
 
@@ -77,7 +82,5 @@ function errorHandler(err: Error) {
     } else {
         console.error(err);
     }
-    return Promise.resolve(null).then(() => {
-        process.exit(1);
-    });
+    process.exit(1);
 }

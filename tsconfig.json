@@ -24,9 +24,11 @@
         "test/cli.spec.ts",
         "test/converter.spec.ts",
         "typings/bundle.d.ts",
+        "typings/mkdirp/mkdirp.d.ts",
         "typings/mocha/mocha.d.ts",
         "typings/nexpect/nexpect.d.ts",
         "typings/node/node.d.ts",
+        "typings/rimraf/rimraf.d.ts",
         "node_modules/typescript/lib/lib.es6.d.ts"
     ]
 }
