@@ -1,0 +1,6 @@
+typings
+test
+test-cli
+
+lib/**/*.ts
+lib/**/*.js.map
