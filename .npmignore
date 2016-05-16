@@ -1,6 +1,11 @@
-typings
-test
-test-cli
-
+# codes
 lib/**/*.ts
-lib/**/*.js.map
+test/
+test-cli/
+typings/
+
+# misc
+circle.yml
+dtsm.json
+tsconfig.json
+tslint.json
