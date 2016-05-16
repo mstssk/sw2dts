@@ -1,3 +1,6 @@
 machine:
   node:
     version: 4
+dependencies:
+  post:
+    - ./node_modules/dtsm/bin/dtsm install
