@@ -1,5 +1,6 @@
 # codes
 lib/**/*.ts
+!lib/**/*.d.ts
 test/
 test-cli/
 typings/
