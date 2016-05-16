@@ -1,6 +1,6 @@
 {
   "name": "sw2dts",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "Generates TypeScript definition file(d.ts) from swagger.json",
   "main": "index.js",
   "bin": {
@@ -12,7 +12,6 @@
   },
   "scripts": {
     "clean": "rm -f lib/*.js lib/*.js.map test/*.js test/*.js.map",
-    "postinstall": "dtsm install",
     "build": "tsconfig -u && tsfmt -r && tsc -p ./",
     "tslint": "tslint ./src/**/*.ts ./test/**/*.ts",
     "pretest": "npm run build",
