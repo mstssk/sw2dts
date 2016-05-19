@@ -1,6 +1,6 @@
 "use strict";
 
-const dtsgen = require("dtsgenerator").default;
+import dtsgen from "dtsgenerator";
 
 export default function converter(data: { definitions: any }, options: ConverterOptions = {}): Promise<string> {
     let namespace = options.namespace ? `${options.namespace}/` : "";
