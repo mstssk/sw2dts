@@ -2,7 +2,7 @@
 
 import dtsgen from "dtsgenerator";
 
-export default function converter(data: { definitions: any }, options: ConverterOptions = {}): Promise<string> {
+export default function converter(data: SwaggerSpec, options: ConverterOptions = {}): Promise<string> {
     let namespace = options.namespace ? `${options.namespace}/` : "";
     let jsonSchemas: {}[] = [];
     for (let title in data.definitions) {
