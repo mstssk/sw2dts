@@ -11,11 +11,11 @@
     "url": "git+https://github.com/mstssk/sw2dts.git"
   },
   "scripts": {
-    "clean": "rm -f lib/*.js lib/*.js.map test/*.js test/*.js.map",
+    "clean": "rimraf '+(lib|test)/*.js?(.map)'",
     "build": "tsconfig -u && tsfmt -r && tsc -p ./",
     "tslint": "tslint ./src/**/*.ts ./test/**/*.ts",
     "pretest": "npm run build",
-    "test": "mocha test/*.js"
+    "test": "mocha test/*.js && npm run clean"
   },
   "author": "mstssk",
   "license": "MIT",

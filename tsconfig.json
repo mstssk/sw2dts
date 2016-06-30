@@ -19,7 +19,7 @@
         "!test/**/*.d.ts",
         "typings/**/*.ts",
         "node_modules/typescript/lib/lib.es6.d.ts",
-        "lib/dtsgenerator.d.ts",
+        "lib/types/*.d.ts",
         "!test/fixtures/*"
     ],
     "files": [
@@ -34,6 +34,6 @@
         "typings/node/node.d.ts",
         "typings/rimraf/rimraf.d.ts",
         "node_modules/typescript/lib/lib.es6.d.ts",
-        "lib/dtsgenerator.d.ts"
+        "lib/types/dtsgenerator.d.ts"
     ]
 }
