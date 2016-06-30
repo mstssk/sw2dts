@@ -20,7 +20,44 @@
                     "Dummy"
                 ],
                 "description": "Get dummy data.",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "response of GET /api/dummy",
+                        "schema": {
+                            "$ref": "#/definitions/Dummy"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/dummy/model": {
+            "get": {
+                "tags": [
+                    "Dummy"
+                ],
+                "description": "Get dummy model data.",
                 "parameters": [
+                    {
+                        "name": "required",
+                        "in": "query",
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "cursor",
+                        "in": "query",
+                        "type": "string"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "type": "number"
+                    }
                 ],
                 "responses": {
                     "200": {
