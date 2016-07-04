@@ -1,6 +1,9 @@
 import * as fs from "fs";
 import * as assert from "assert";
-import converter from "../lib/converter";
+import {
+    default as converter,
+    _resolveQueryParamsTitle,
+} from "../lib/converter";
 
 describe('converter', () => {
     it('should can convert', (done) => {
@@ -23,5 +26,16 @@ describe('converter', () => {
                 assert.equal(model, dts);
                 done();
             }).catch(done);
+    });
+
+    it('resolveQueryParamsTitle', () => {
+        assert.equal(_resolveQueryParamsTitle('abc'), 'Abc');
+        assert.equal(_resolveQueryParamsTitle('/abc'), 'Abc');
+        assert.equal(_resolveQueryParamsTitle('/api/dummy/model'), 'ApiDummyModel');
+        assert.equal(_resolveQueryParamsTitle('/api/dummy/model/'), 'ApiDummyModel');
+        assert.equal(_resolveQueryParamsTitle('api-dummy-model'), 'ApiDummyModel');
+        assert.equal(_resolveQueryParamsTitle('api_dummy_model'), 'ApiDummyModel');
+        assert.equal(_resolveQueryParamsTitle('/api/dummy/model/{id}'), 'ApiDummyModel');
+        assert.equal(_resolveQueryParamsTitle('foo1bar'), 'Foo1Bar');
     });
 });

@@ -24,6 +24,18 @@ function fixRef(obj: any) {
     }
 }
 
+export function _resolveQueryParamsTitle(path: string, options: ConverterOptions = {}) {
+    path = path.replace(/{[^}]*}/g, '').replace(/\/$/, '');
+    path = path.replace(/(^|[\/_-])(\w)/g, (substr, ...args) => {
+        return args[1].toUpperCase();
+    });
+    path = path.replace(/(\d+)(\w)/, (substr, ...args) => {
+        return args[0] + args[1].toUpperCase();
+    })
+    return path;
+}
+
 export interface ConverterOptions {
     namespace?: string;
+    withQuery?: boolean;
 }
