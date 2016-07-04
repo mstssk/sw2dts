@@ -6,13 +6,32 @@ interface SwaggerSpec {
                 parameters: {
                     name: string,
                     in: "query" | "header" | "path" | "formData" | "body",
-                    type: "string" | "number" | "integer" | "boolean" | "array" | "file"
+                    type: SchemaType;
                 }[]
             },
             post?: any
         }
     }
     definitions: {
-        [name: string]: any
+        [name: string]: SchemaDefinition;
     }
 }
+
+interface SchemaDefinition {
+    id?: string;
+    type: string;
+    properties: SchemaProperties;
+}
+interface SchemaProperties {
+    [key: string]: {
+        format?: string;
+        type?: SchemaType;
+        "$ref"?: string;
+        items?: {
+            format?: string;
+            type?: SchemaType;
+        }
+    }
+}
+
+declare type SchemaType = "string" | "number" | "integer" | "boolean" | "array" | "file";

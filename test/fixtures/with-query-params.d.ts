@@ -1,3 +1,9 @@
+export interface ApiDummyModelQueryParams {
+    required?: boolean;
+    cursor?: string;
+    limit?: number;
+    offset?: number;
+}
 export interface Dummy {
     image?: Image;
     createdAt?: string; // date-time
@@ -19,10 +25,4 @@ export interface Image {
     width?: number; // int32
 }
 export interface Noop {
-}
-export interface ApiDummyModelQueryParams {
-    required?: boolean;
-    cursor?: string;
-    limit?: number;
-    offset?: number;
 }
