@@ -1,4 +1,4 @@
-export interface ApiDummyModelQueryParams {
+export interface ApiDummyModel {
     required?: boolean;
     cursor?: string;
     limit?: number;

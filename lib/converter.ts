@@ -51,7 +51,7 @@ export function _resolveQueryParamsTitle(path: string, options: ConverterOptions
     path = path.replace(/(\d+)(\w)/, (substr, ...args) => {
         return args[0] + args[1].toUpperCase();
     })
-    return path + "QueryParams";
+    return path;
 }
 
 export interface ConverterOptions {
