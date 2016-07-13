@@ -8,12 +8,14 @@ interface RootOptions {
     stdin: boolean;
     output: string[];
     namespace: string[];
+    withQuery: boolean;
 }
 
 const root = commandpost
     .create<RootOptions, { input_filename: string }>("sw2dts [input_filename]")
     .version(pkg.version, "-v, --version")
     .option("--stdin", "Input from standard input.")
+    .option("--with-query", "With GET query parameters.")
     .option("-o, --output <output_filename>", "Output to file.")
     .option("-n, --namespace <namespace>", "Use namespace.")
     .action((opts, args) => {
@@ -35,7 +37,8 @@ const root = commandpost
 
         promise.then(input => {
             let namespace = opts.namespace[0];
-            return converter(JSON.parse(input), { namespace });
+            let withQuery = opts.withQuery;
+            return converter(JSON.parse(input), { namespace, withQuery });
         }).then(model => {
             if (output_filename) {
                 fs.writeFileSync(output_filename, model);
