@@ -10,3 +10,4 @@ circle.yml
 dtsm.json
 tsconfig.json
 tslint.json
+setup.sh

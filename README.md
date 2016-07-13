@@ -38,3 +38,10 @@ $ sw2dts -o output.d.ts swagger.json
 $ sw2dts --namespace foo -o output.d.ts swagger.json
 $ cat swagger.json | sw2dts --stdin -o output.d.ts
 ```
+
+## How to build
+
+```
+./setup.sh
+npm test
+```
