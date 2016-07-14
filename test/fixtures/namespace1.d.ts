@@ -1,4 +1,4 @@
-declare namespace foo {
+declare namespace Foo {
     export interface Dummy {
         image?: Image;
         createdAt?: string; // date-time

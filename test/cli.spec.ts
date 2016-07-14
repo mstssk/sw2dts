@@ -54,7 +54,7 @@ describe("CLI", () => {
         const swaggerJsonPath = path.resolve(fixturesDir, "swagger.json");
         const expectedPath = path.resolve(fixturesDir, "namespace1.d.ts");
         nexpect
-            .spawn("node", [sw2dtsPath, swaggerJsonPath, "-n", "foo"])
+            .spawn("node", [sw2dtsPath, swaggerJsonPath, "-n", "Foo"])
             .run((err, stdout, exit) => {
                 const actual = stdout.join("\n") + "\n";
                 const expected = fs.readFileSync(expectedPath).toString();
