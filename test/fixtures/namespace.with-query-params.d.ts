@@ -1,4 +1,4 @@
-declare namespace foo {
+declare namespace Foo {
     export interface ApiDummyModel {
         required?: boolean;
         cursor?: string;
