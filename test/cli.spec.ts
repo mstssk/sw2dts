@@ -143,4 +143,19 @@ describe("CLI", () => {
                 done();
             });
     });
+
+    it("yaml to stdout", done => {
+        const srcPath = path.resolve(fixturesDir, "error_model.yml");
+        const expectedPath = path.resolve(fixturesDir, "error_model.d.ts");
+        nexpect
+            .spawn("node", [sw2dtsPath, srcPath])
+            .run((err, stdout, exit) => {
+                const actual = stdout.join("\n") + "\n";
+                const expected = fs.readFileSync(expectedPath).toString();
+                assert.equal(actual, expected);
+                assert(!err);
+                assert(exit === 0);
+                done();
+            });
+    });
 });
