@@ -1,5 +1,6 @@
 import * as fs from "fs";
 import * as commandpost from "commandpost";
+import * as YAML from "js-yaml";
 import converter from "./converter";
 
 const pkg = require("../package.json");
@@ -38,7 +39,7 @@ const root = commandpost
         promise.then(input => {
             let namespace = opts.namespace[0];
             let withQuery = opts.withQuery;
-            return converter(JSON.parse(input), { namespace, withQuery });
+            return converter(YAML.safeLoad(input), { namespace, withQuery });
         }).then(model => {
             if (output_filename) {
                 fs.writeFileSync(output_filename, model);
