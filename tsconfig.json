@@ -28,6 +28,7 @@
         "test/cli.spec.ts",
         "test/converter.spec.ts",
         "typings/bundle.d.ts",
+        "typings/js-yaml/js-yaml.d.ts",
         "typings/mkdirp/mkdirp.d.ts",
         "typings/mocha/mocha.d.ts",
         "typings/nexpect/nexpect.d.ts",

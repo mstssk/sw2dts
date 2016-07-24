@@ -30,6 +30,8 @@ or, install with `--save-dev` option to use in [npm scripts](https://docs.npmjs.
     -n, --namespace <namespace>     Use namespace.
 ```
 
+- *input_filename* should be swagger.json(or yaml) file.
+
 ### Example
 
 ```
