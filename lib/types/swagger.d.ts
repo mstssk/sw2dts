@@ -1,22 +1,22 @@
 interface SwaggerSpec {
     paths: {
-        [path: string]: {
-            get?: {
-                description: string,
-                parameters: {
-                    name: string,
-                    in: "query" | "header" | "path" | "formData" | "body",
-                    type: SchemaType;
-                }[]
-            },
-            post?: any
-        }
+        [path: string]: PathDefinition;
     }
     definitions: {
         [name: string]: SchemaDefinition;
     }
 }
-
+interface PathDefinition {
+    get?: {
+        description: string,
+        parameters: {
+            name: string,
+            in: "query" | "header" | "path" | "formData" | "body",
+            type: SchemaType;
+        }[]
+    },
+    post?: any
+}
 interface SchemaDefinition {
     id?: string;
     type: string;

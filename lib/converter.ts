@@ -3,6 +3,9 @@
 import dtsgen from "dtsgenerator";
 
 export default function converter(data: SwaggerSpec, options: ConverterOptions = {}): Promise<string> {
+    if (!options.nameResolver) {
+        options.nameResolver = PascalCaseNameResolver;
+    }
     let namespace = (options.namespace || "");
     let jsonSchemas: {}[] = [];
     for (let title in data.definitions) {
@@ -23,7 +26,7 @@ export default function converter(data: SwaggerSpec, options: ConverterOptions =
                 return result;
             }, {} as SchemaProperties);
             let schema: SchemaDefinition = {
-                id: _resolveQueryParamsTitle(path),
+                id: options.nameResolver(path, props, options),
                 type: "object",
                 properties
             };
@@ -49,7 +52,10 @@ function fixRef(obj: any) {
     }
 }
 
-export function _resolveQueryParamsTitle(path: string, options: ConverterOptions = {}) {
+/**
+ * Default name resolver which resolve name as PascalCase from path string.
+ */
+export function PascalCaseNameResolver(path: string, options: ConverterOptions = {}) {
     path = path.replace(/{[^}]*}/g, '').replace(/\/$/, '');
     path = path.replace(/(^|[\/_-])(\w)/g, (substr, ...args) => {
         return args[1].toUpperCase();
@@ -63,4 +69,5 @@ export function _resolveQueryParamsTitle(path: string, options: ConverterOptions
 export interface ConverterOptions {
     namespace?: string;
     withQuery?: boolean;
+    nameResolver?: (path: string, pathDefinition: PathDefinition, options: ConverterOptions) => string;
 }

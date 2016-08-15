@@ -2,7 +2,7 @@ import * as fs from "fs";
 import * as assert from "assert";
 import {
     default as converter,
-    _resolveQueryParamsTitle,
+    PascalCaseNameResolver,
 } from "../lib/converter";
 
 describe('converter', () => {
@@ -28,14 +28,14 @@ describe('converter', () => {
             }).catch(done);
     });
 
-    it('resolveQueryParamsTitle', () => {
-        assert.equal(_resolveQueryParamsTitle('abc'), 'Abc');
-        assert.equal(_resolveQueryParamsTitle('/abc'), 'Abc');
-        assert.equal(_resolveQueryParamsTitle('/api/dummy/model'), 'ApiDummyModel');
-        assert.equal(_resolveQueryParamsTitle('/api/dummy/model/'), 'ApiDummyModel');
-        assert.equal(_resolveQueryParamsTitle('api-dummy-model'), 'ApiDummyModel');
-        assert.equal(_resolveQueryParamsTitle('api_dummy_model'), 'ApiDummyModel');
-        assert.equal(_resolveQueryParamsTitle('/api/dummy/model/{id}'), 'ApiDummyModel');
-        assert.equal(_resolveQueryParamsTitle('foo1bar'), 'Foo1Bar');
+    it('PascalCaseNameResolver', () => {
+        assert.equal(PascalCaseNameResolver('abc'), 'Abc');
+        assert.equal(PascalCaseNameResolver('/abc'), 'Abc');
+        assert.equal(PascalCaseNameResolver('/api/dummy/model'), 'ApiDummyModel');
+        assert.equal(PascalCaseNameResolver('/api/dummy/model/'), 'ApiDummyModel');
+        assert.equal(PascalCaseNameResolver('api-dummy-model'), 'ApiDummyModel');
+        assert.equal(PascalCaseNameResolver('api_dummy_model'), 'ApiDummyModel');
+        assert.equal(PascalCaseNameResolver('/api/dummy/model/{id}'), 'ApiDummyModel');
+        assert.equal(PascalCaseNameResolver('foo1bar'), 'Foo1Bar');
     });
 });
