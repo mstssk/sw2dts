@@ -3,12 +3,12 @@
 import dtsgen from "dtsgenerator";
 
 export default function converter(data: SwaggerSpec, options: ConverterOptions = {}): Promise<string> {
-    let namespace = options.namespace ? `${options.namespace}/` : "";
+    let namespace = (options.namespace || "");
     let jsonSchemas: {}[] = [];
     for (let title in data.definitions) {
         let schema = data.definitions[title];
         fixRef(schema);
-        schema.id = namespace + title;
+        schema.id = title;
         jsonSchemas.push(schema);
     }
     if (options.withQuery) {
@@ -23,14 +23,20 @@ export default function converter(data: SwaggerSpec, options: ConverterOptions =
                 return result;
             }, {} as SchemaProperties);
             let schema: SchemaDefinition = {
-                id: namespace + _resolveQueryParamsTitle(path),
+                id: _resolveQueryParamsTitle(path),
                 type: "object",
                 properties
             };
             jsonSchemas.push(schema);
         }
     }
-    return dtsgen(jsonSchemas);
+    return dtsgen(jsonSchemas).then(text => {
+        if (!namespace) {
+            return text;
+        }
+        text = text.split("\n").join("\n    ").trim();
+        return `declare namespace ${namespace} {\n    ${text}\n}\n`;
+    });
 }
 
 function fixRef(obj: any) {
