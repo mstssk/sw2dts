@@ -29,13 +29,14 @@ describe('converter', () => {
     });
 
     it('PascalCaseNameResolver', () => {
-        assert.equal(PascalCaseNameResolver('abc'), 'Abc');
-        assert.equal(PascalCaseNameResolver('/abc'), 'Abc');
-        assert.equal(PascalCaseNameResolver('/api/dummy/model'), 'ApiDummyModel');
-        assert.equal(PascalCaseNameResolver('/api/dummy/model/'), 'ApiDummyModel');
-        assert.equal(PascalCaseNameResolver('api-dummy-model'), 'ApiDummyModel');
-        assert.equal(PascalCaseNameResolver('api_dummy_model'), 'ApiDummyModel');
-        assert.equal(PascalCaseNameResolver('/api/dummy/model/{id}'), 'ApiDummyModel');
-        assert.equal(PascalCaseNameResolver('foo1bar'), 'Foo1Bar');
+        const pd = {}, opt = {};
+        assert.equal(PascalCaseNameResolver('abc', pd, opt), 'Abc');
+        assert.equal(PascalCaseNameResolver('/abc', pd, opt), 'Abc');
+        assert.equal(PascalCaseNameResolver('/api/dummy/model', pd, opt), 'ApiDummyModel');
+        assert.equal(PascalCaseNameResolver('/api/dummy/model/', pd, opt), 'ApiDummyModel');
+        assert.equal(PascalCaseNameResolver('api-dummy-model', pd, opt), 'ApiDummyModel');
+        assert.equal(PascalCaseNameResolver('api_dummy_model', pd, opt), 'ApiDummyModel');
+        assert.equal(PascalCaseNameResolver('/api/dummy/model/{id}', pd, opt), 'ApiDummyModel');
+        assert.equal(PascalCaseNameResolver('foo1bar', pd, opt), 'Foo1Bar');
     });
 });

@@ -3,6 +3,7 @@
 import dtsgen from "dtsgenerator";
 
 export default function converter(data: SwaggerSpec, options: ConverterOptions = {}): Promise<string> {
+    'use strict';
     if (!options.nameResolver) {
         options.nameResolver = PascalCaseNameResolver;
     }
@@ -43,6 +44,7 @@ export default function converter(data: SwaggerSpec, options: ConverterOptions =
 }
 
 function fixRef(obj: any) {
+    'use strict';
     for (let key in obj) {
         if (key === "$ref") {
             obj["$ref"] = obj["$ref"].split("/").pop();
@@ -55,14 +57,16 @@ function fixRef(obj: any) {
 /**
  * Default name resolver which resolve name as PascalCase from path string.
  */
-export function PascalCaseNameResolver(path: string, options: ConverterOptions = {}) {
+export function PascalCaseNameResolver(path: string, pathDefinition: PathDefinition, options: ConverterOptions): string {
+    'use strict';
+    options = options || {};
     path = path.replace(/{[^}]*}/g, '').replace(/\/$/, '');
     path = path.replace(/(^|[\/_-])(\w)/g, (substr, ...args) => {
         return args[1].toUpperCase();
     });
     path = path.replace(/(\d+)(\w)/, (substr, ...args) => {
         return args[0] + args[1].toUpperCase();
-    })
+    });
     return path;
 }
 

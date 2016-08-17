@@ -20,7 +20,7 @@ const root = commandpost
     .option("-o, --output <output_filename>", "Output to file.")
     .option("-n, --namespace <namespace>", "Use namespace.")
     .action((opts, args) => {
-        const output_filename = opts.output[0];
+        const outputFilename = opts.output[0];
         let promise: Promise<string> = null;
         if (args.input_filename && opts.stdin) {
             process.stderr.write("Invalid parameters!\n");
@@ -41,8 +41,8 @@ const root = commandpost
             let withQuery = opts.withQuery;
             return converter(YAML.safeLoad(input), { namespace, withQuery });
         }).then(model => {
-            if (output_filename) {
-                fs.writeFileSync(output_filename, model);
+            if (outputFilename) {
+                fs.writeFileSync(outputFilename, model);
             } else {
                 console.log(model);
             }
@@ -55,6 +55,7 @@ commandpost
     .catch(errorHandler);
 
 function fromStdin(): Promise<string> {
+    'use strict';
     return new Promise((resolve, reject) => {
         let data = "";
         let resolved = false;
@@ -77,6 +78,7 @@ function fromStdin(): Promise<string> {
 }
 
 function fromFile(inputFileName: string): Promise<string> {
+    'use strict';
     return new Promise((resolve, reject) => {
         let file = fs.readFileSync(inputFileName, { encoding: "utf-8" });
         resolve(file);
@@ -84,6 +86,7 @@ function fromFile(inputFileName: string): Promise<string> {
 }
 
 function errorHandler(err: Error) {
+    'use strict';
     if (err instanceof Error) {
         console.error(err.stack);
     } else {

@@ -90,7 +90,7 @@ describe("CLI", () => {
                 const actual = fs.readFileSync(outputPath).toString();
                 const expected = fs.readFileSync(expectedPath).toString();
                 assert.equal(actual, expected);
-                assert(stdout.join("") == "", "stdout should be empty.");
+                assert(stdout.join("") === "", "stdout should be empty.");
                 assert(!err, "should not error");
                 assert(exit === 0, "should exit(0).");
                 done();
@@ -107,7 +107,7 @@ describe("CLI", () => {
                 const actual = fs.readFileSync(outputPath).toString();
                 const expected = fs.readFileSync(expectedPath).toString();
                 assert.equal(actual, expected);
-                assert(stdout.join("") == "", "stdout should be empty.");
+                assert(stdout.join("") === "", "stdout should be empty.");
                 assert(!err, "should not error");
                 assert(exit === 0, "should exit(0).");
                 done();

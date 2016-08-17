@@ -12,8 +12,8 @@
   },
   "scripts": {
     "clean": "rimraf '+(lib|test)/*.js?(.map)' 'test/*.d.ts'",
+    "prebuild": "tslint './lib/**/*.ts' './test/**/*.ts'",
     "build": "tsconfig -u && tsfmt -r && tsc -p ./",
-    "tslint": "tslint ./src/**/*.ts ./test/**/*.ts",
     "pretest": "npm run build",
     "test": "mocha test/*.js && npm run clean"
   },

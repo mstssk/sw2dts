@@ -1,10 +1,10 @@
 interface SwaggerSpec {
     paths: {
         [path: string]: PathDefinition;
-    }
+    };
     definitions: {
         [name: string]: SchemaDefinition;
-    }
+    };
 }
 interface PathDefinition {
     get?: {
@@ -14,8 +14,8 @@ interface PathDefinition {
             in: "query" | "header" | "path" | "formData" | "body",
             type: SchemaType;
         }[]
-    },
-    post?: any
+    };
+    post?: any;
 }
 interface SchemaDefinition {
     id?: string;
@@ -31,7 +31,7 @@ interface SchemaProperties {
             format?: string;
             type?: SchemaType;
         }
-    }
+    };
 }
 
 declare type SchemaType = "string" | "number" | "integer" | "boolean" | "array" | "file";
