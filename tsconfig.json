@@ -6,9 +6,9 @@
         "removeComments": false,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
-        "sourceMap": true,
+        "sourceMap": false,
         "declaration": true,
-        "inlineSources": true,
+        "inlineSources": false,
         "newLine": "LF",
         "noEmitOnError": true
     },
