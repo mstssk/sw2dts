@@ -2,7 +2,7 @@
 
 import dtsgen from "dtsgenerator";
 
-export function sw2dts(data: SwaggerSpec, options: ConverterOptions = {}): Promise<string> {
+export function sw2dts(data: swagger.SwaggerSpec, options: ConverterOptions = {}): Promise<string> {
     'use strict';
     if (!options.nameResolver) {
         options.nameResolver = PascalCaseNameResolver;
@@ -25,8 +25,8 @@ export function sw2dts(data: SwaggerSpec, options: ConverterOptions = {}): Promi
             let properties = props.get.parameters.reduce((result, value) => {
                 result[value.name] = { type: value.type };
                 return result;
-            }, {} as SchemaProperties);
-            let schema: SchemaDefinition = {
+            }, {} as swagger.SchemaProperties);
+            let schema: swagger.SchemaDefinition = {
                 id: options.nameResolver(path, props, options),
                 type: "object",
                 properties
@@ -57,7 +57,7 @@ function fixRef(obj: any) {
 /**
  * Default name resolver which resolve name as PascalCase from path string.
  */
-export function PascalCaseNameResolver(path: string, pathDefinition: PathDefinition, options: ConverterOptions): string {
+export function PascalCaseNameResolver(path: string, pathDefinition: swagger.PathDefinition, options: ConverterOptions): string {
     'use strict';
     options = options || {};
     path = path.replace(/{[^}]*}/g, '').replace(/\/$/, '');
@@ -73,5 +73,48 @@ export function PascalCaseNameResolver(path: string, pathDefinition: PathDefinit
 export interface ConverterOptions {
     namespace?: string;
     withQuery?: boolean;
-    nameResolver?: (path: string, pathDefinition: PathDefinition, options: ConverterOptions) => string;
+    nameResolver?: (path: string, pathDefinition: swagger.PathDefinition, options: ConverterOptions) => string;
+}
+
+// TODO separate below type definitions into another file.
+// ---- Swagger Specifications ----
+
+export declare namespace swagger {
+    interface SwaggerSpec {
+        paths?: {
+            [path: string]: PathDefinition;
+        };
+        definitions?: {
+            [name: string]: SchemaDefinition;
+        };
+    }
+    interface PathDefinition {
+        get?: {
+            description: string,
+            parameters: {
+                name: string,
+                in: "query" | "header" | "path" | "formData" | "body",
+                type: SchemaType;
+            }[]
+        };
+        post?: any;
+    }
+    interface SchemaDefinition {
+        id?: string;
+        type: string;
+        properties: SchemaProperties;
+    }
+    interface SchemaProperties {
+        [key: string]: {
+            format?: string;
+            type?: SchemaType;
+            "$ref"?: string;
+            items?: {
+                format?: string;
+                type?: SchemaType;
+            }
+        };
+    }
+
+    type SchemaType = "string" | "number" | "integer" | "boolean" | "array" | "file";
 }
