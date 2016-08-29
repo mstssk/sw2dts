@@ -2,7 +2,7 @@
 
 import dtsgen from "dtsgenerator";
 
-export default function converter(data: SwaggerSpec, options: ConverterOptions = {}): Promise<string> {
+export function sw2dts(data: SwaggerSpec, options: ConverterOptions = {}): Promise<string> {
     'use strict';
     if (!options.nameResolver) {
         options.nameResolver = PascalCaseNameResolver;
