@@ -1,7 +1,7 @@
 import * as fs from "fs";
 import * as commandpost from "commandpost";
 import * as YAML from "js-yaml";
-import {sw2dts} from "./converter";
+import { convert } from "./converter";
 
 const pkg = require("../package.json");
 
@@ -39,7 +39,7 @@ const root = commandpost
         promise.then(input => {
             let namespace = opts.namespace[0];
             let withQuery = opts.withQuery;
-            return sw2dts(YAML.safeLoad(input), { namespace, withQuery });
+            return convert(YAML.safeLoad(input), { namespace, withQuery });
         }).then(model => {
             if (outputFilename) {
                 fs.writeFileSync(outputFilename, model);
