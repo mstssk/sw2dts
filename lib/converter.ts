@@ -80,6 +80,7 @@ export interface ConverterOptions {
 // ---- Swagger Specifications ----
 
 export interface SwaggerSpec {
+    [key: string]: any; // allow anything else properties.
     paths?: {
         [path: string]: PathDefinition;
     };
@@ -89,8 +90,9 @@ export interface SwaggerSpec {
 }
 export interface PathDefinition {
     get?: {
-        description: string,
-        parameters: {
+        [key: string]: any; // allow anything else properties.
+        description?: string,
+        parameters?: {
             name: string,
             in: "query" | "header" | "path" | "formData" | "body",
             type: SchemaType;
@@ -101,7 +103,7 @@ export interface PathDefinition {
 export interface SchemaDefinition {
     id?: string;
     type: string;
-    properties: SchemaProperties;
+    properties?: SchemaProperties;
 }
 export interface SchemaProperties {
     [key: string]: {
