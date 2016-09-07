@@ -41,6 +41,34 @@ $ sw2dts --namespace foo -o output.d.ts swagger.json
 $ cat swagger.json | sw2dts --stdin -o output.d.ts
 ```
 
+#### Tips
+
+Use sw2dts in your script.
+
+Sample:
+
+```ts
+import * as sw2dts from 'sw2dts';
+
+let data: sw2dts.SwaggerSpec = { /* swagger data */ };
+
+let option: sw2dts.ConverterOptions = {
+    namespace: 'foo',
+    
+    // includes GET query parameters.
+    withQuery: true, 
+    
+    // modify GET query parameters interface name.
+    nameResolver: (path: string, pathDefinition: sw2dts.PathDefinition, options: sw2dts.ConverterOptions) => {
+        return 'any name as you like'; // WARN: sw2dts will convert this name to PascalCase.
+    }
+};
+
+sw2dts.convert(data, option).then(dts => {
+    console.log(dts);
+});
+```
+
 ## How to build
 
 ```
