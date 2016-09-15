@@ -14,6 +14,19 @@
         "application/json"
     ],
     "paths": {
+        "/api/foo": {
+            "get": {
+                "tags": [
+                    "Dummy"
+                ],
+                "description": "download dummy data",
+                "responses": {
+                    "200": {
+                        "description": "response of GET /dummy"
+                    }
+                }
+            }
+        },
         "/api/dummy": {
             "get": {
                 "tags": [

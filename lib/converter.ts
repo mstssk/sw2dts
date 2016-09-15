@@ -18,7 +18,7 @@ export function convert(data: SwaggerSpec, options: ConverterOptions = {}): Prom
     if (options.withQuery) {
         for (let path in (data.paths || [])) {
             let props = data.paths[path];
-            if (!props.get || !props.get.parameters.length
+            if (!props.get || isEmpty(props.get.parameters)
                 || props.get.parameters.some(v => v.in !== "query")) {
                 continue;
             }
@@ -52,6 +52,11 @@ function fixRef(obj: any) {
             fixRef(obj[key]);
         }
     }
+}
+
+function isEmpty(array: any[]) {
+    'use strict';
+    return array ? !array.length : true;
 }
 
 /**
