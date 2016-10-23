@@ -12,6 +12,7 @@
   },
   "scripts": {
     "clean": "rimraf '+(lib|test)/*.js?(.map)' 'test/*.d.ts'",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "prebuild": "tslint './lib/**/*.ts' './test/**/*.ts'",
     "build": "tsconfig -u && tsfmt -r && tsc -p ./",
     "pretest": "npm run build",
@@ -25,6 +26,7 @@
     "js-yaml": "^3.6.1"
   },
   "devDependencies": {
+    "conventional-changelog-cli": "^1.2.0",
     "dtsm": "^1.1.0",
     "mkdirp": "^0.5.1",
     "mocha": "^2.4.5",
