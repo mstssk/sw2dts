@@ -1,3 +1,13 @@
+<a name="2.1.4"></a>
+## [2.1.4](https://github.com/mstssk/sw2dts/compare/v2.1.3...v2.1.4) (2016-11-01)
+
+
+### Bug Fixes
+
+* fix CI and publishing problems. ([f44a221](https://github.com/mstssk/sw2dts/commit/f44a221))
+
+
+
 <a name="2.1.3"></a>
 ## [2.1.3](https://github.com/mstssk/sw2dts/compare/v2.1.2...v2.1.3) (2016-11-01)
 
