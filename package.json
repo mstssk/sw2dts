@@ -2,6 +2,13 @@
   "name": "sw2dts",
   "version": "2.1.2",
   "description": "Generates TypeScript definition file(d.ts) from swagger.json",
+  "keywords": [
+    "typescript",
+    "swagger",
+    "json",
+    "yaml",
+    "d.ts"
+  ],
   "main": "index.js",
   "bin": {
     "sw2dts": "./bin/sw2dts"
