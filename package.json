@@ -20,6 +20,8 @@
   "scripts": {
     "clean": "rimraf '+(lib|test)/*.js?(.map)' 'test/*.d.ts'",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
+    "version": "npm run changelog && git add CHANGELOG.md",
+    "prepublish": "npm test",
     "prebuild": "tslint './lib/**/*.ts' './test/**/*.ts'",
     "build": "tsconfig -u && tsfmt -r && tsc -p ./",
     "pretest": "npm run build",
