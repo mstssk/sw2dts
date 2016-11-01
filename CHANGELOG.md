@@ -1,3 +1,13 @@
+<a name="2.1.3"></a>
+## [2.1.3](https://github.com/mstssk/sw2dts/compare/v2.1.2...v2.1.3) (2016-11-01)
+
+
+### Bug Fixes
+
+* add keywords in package.json [#10](https://github.com/mstssk/sw2dts/issues/10) ([d447a55](https://github.com/mstssk/sw2dts/commit/d447a55))
+
+
+
 <a name="2.1.2"></a>
 ## [2.1.2](https://github.com/mstssk/sw2dts/compare/v2.1.1...v2.1.2) (2016-09-15)
 
