@@ -10,31 +10,24 @@
         "declaration": true,
         "inlineSources": false,
         "newLine": "LF",
-        "noEmitOnError": true
+        "noEmitOnError": true,
+        "lib": [
+            "es6"
+        ],
+        "types": [
+            "node",
+            "mocha",
+            "nexpect",
+            "mkdirp",
+            "rimraf",
+            "js-yaml"
+        ]
     },
-    "filesGlob": [
+    "include": [
         "lib/**/*.ts",
-        "test/**/*.ts",
-        "!lib/**/*.d.ts",
-        "!test/**/*.d.ts",
-        "typings/**/*.ts",
-        "node_modules/typescript/lib/lib.es6.d.ts",
-        "lib/types/*.d.ts",
-        "!test/fixtures/*"
+        "test/**/*.ts"
     ],
-    "files": [
-        "lib/cli.ts",
-        "lib/converter.ts",
-        "test/cli.spec.ts",
-        "test/converter.spec.ts",
-        "typings/bundle.d.ts",
-        "typings/js-yaml/js-yaml.d.ts",
-        "typings/mkdirp/mkdirp.d.ts",
-        "typings/mocha/mocha.d.ts",
-        "typings/nexpect/nexpect.d.ts",
-        "typings/node/node.d.ts",
-        "typings/rimraf/rimraf.d.ts",
-        "node_modules/typescript/lib/lib.es6.d.ts",
-        "lib/types/dtsgenerator.d.ts"
+    "exclude": [
+        "test/fixtures/*"
     ]
 }

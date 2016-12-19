@@ -22,7 +22,7 @@
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "version": "npm run changelog && git add CHANGELOG.md",
     "prebuild": "tslint './lib/**/*.ts' './test/**/*.ts'",
-    "build": "tsconfig -u && tsfmt -r && tsc -p ./",
+    "build": "tsfmt -r && tsc -p ./",
     "pretest": "npm run clean && npm run build",
     "test": "mocha test/*.js"
   },
@@ -34,15 +34,19 @@
     "js-yaml": "^3.6.1"
   },
   "devDependencies": {
+    "@types/js-yaml": "^3.5.28",
+    "@types/mkdirp": "^0.3.29",
+    "@types/mocha": "^2.2.33",
+    "@types/nexpect": "^0.4.29",
+    "@types/node": "^6.0.52",
+    "@types/rimraf": "0.0.28",
     "conventional-changelog-cli": "^1.2.0",
-    "dtsm": "^1.1.0",
     "mkdirp": "^0.5.1",
     "mocha": "^2.4.5",
     "nexpect": "^0.5.0",
     "rimraf": "^2.5.2",
-    "tsconfig-cli": "^2.0.0",
     "tslint": "^3.9.0",
-    "typescript": "^1.8.10",
-    "typescript-formatter": "^2.1.0"
+    "typescript": "^2.1.4",
+    "typescript-formatter": "^4.0.1"
   }
 }
