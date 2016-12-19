@@ -28,6 +28,17 @@ describe('converter', () => {
             }).catch(done);
     });
 
+    it('query params enum', (done) => {
+        const file = fs.readFileSync("test/fixtures/parameters_query.json").toString();
+        const dts = fs.readFileSync("test/fixtures/parameters_query.d.ts").toString();
+        convert(JSON.parse(file), { withQuery: true })
+            .then((model: string) => {
+                assert(!!model);
+                assert.equal(model, dts);
+                done();
+            }).catch(done);
+    });
+
     it('PascalCaseNameResolver', () => {
         const pd = {}, opt = {};
         assert.equal(PascalCaseNameResolver('abc', pd, opt), 'Abc');

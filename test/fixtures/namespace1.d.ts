@@ -9,6 +9,7 @@ declare namespace foo {
         count?: number; // int32
         updatedAt?: string; // date-time
         ids?: string /* int64 */ [];
+        status?: "placed" | "approved" | "delivered";
     }
     export interface Image {
         createdAt?: string; // date-time

@@ -23,7 +23,11 @@ export function convert(data: SwaggerSpec, options: ConverterOptions = {}): Prom
                 continue;
             }
             let properties = props.get.parameters.reduce((result, value) => {
-                result[value.name] = { type: value.type };
+                result[value.name] = {
+                    type: value.type,
+                    items: value.items,
+                    enum: value.enum,
+                };
                 return result;
             }, {} as SchemaProperties);
             let schema: SchemaDefinition = {
@@ -101,6 +105,11 @@ export interface PathDefinition {
             name: string,
             in: "query" | "header" | "path" | "formData" | "body",
             type: SchemaType;
+            enum?: string[]
+            items?: {
+                type?: SchemaType,
+                enum?: string[]
+            }
         }[]
     };
     post?: any;
@@ -115,10 +124,12 @@ export interface SchemaProperties {
         format?: string;
         type?: SchemaType;
         "$ref"?: string;
+        enum?: string[];
         items?: {
             format?: string;
             type?: SchemaType;
-        }
+            enum?: string[];
+        };
     };
 }
 export type SchemaType = "string" | "number" | "integer" | "boolean" | "array" | "file";
