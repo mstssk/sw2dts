@@ -121,6 +121,14 @@
                         "format": "int64",
                         "type": "string"
                     }
+                },
+                "status": {
+                    "type": "string",
+                    "enum": [
+                        "placed",
+                        "approved",
+                        "delivered"
+                    ]
                 }
             }
         },
