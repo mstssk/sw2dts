@@ -1,6 +1,7 @@
 sw2dts 
 ------
 
+[![npm version](https://badge.fury.io/js/sw2dts.svg)](https://badge.fury.io/js/sw2dts)
 [![Circle CI](https://circleci.com/gh/mstssk/sw2dts.svg?style=svg)](https://circleci.com/gh/mstssk/sw2dts)
 
 Generates TypeScript definition file(d.ts) from swagger.json
