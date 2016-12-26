@@ -1,3 +1,14 @@
+<a name="2.2.0"></a>
+# [2.2.0](https://github.com/mstssk/sw2dts/compare/v2.1.4...v2.2.0) (2016-12-26)
+
+
+### Features
+
+* enum in parameters ([cbb8413](https://github.com/mstssk/sw2dts/commit/cbb8413))
+* Update TypeScript v2.1.4 ([ed20d0b](https://github.com/mstssk/sw2dts/commit/ed20d0b))
+
+
+
 <a name="2.1.4"></a>
 ## [2.1.4](https://github.com/mstssk/sw2dts/compare/v2.1.3...v2.1.4) (2016-11-01)
 
