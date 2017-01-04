@@ -129,6 +129,21 @@ describe("CLI", () => {
             });
     });
 
+    it("file to stdout with --sort-props option", (done) => {
+        const swaggerJsonPath = path.resolve(fixturesDir, "swagger.json");
+        const expectedPath = path.resolve(fixturesDir, "swagger.json.sort-props.d.ts");
+        nexpect
+            .spawn("node", [sw2dtsPath, "--sort-props", swaggerJsonPath])
+            .run((err, stdout, exit) => {
+                const actual = stdout.join("\n") + "\n";
+                const expected = fs.readFileSync(expectedPath).toString();
+                assert.equal(actual, expected);
+                assert(!err);
+                assert(exit === 0);
+                done();
+            });
+    });
+
     it("file to stdout with query params and namespace", (done) => {
         const swaggerJsonPath = path.resolve(fixturesDir, "swagger.json");
         const expectedPath = path.resolve(fixturesDir, "namespace.with-query-params.d.ts");

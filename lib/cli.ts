@@ -10,6 +10,7 @@ interface RootOptions {
     output: string[];
     namespace: string[];
     withQuery: boolean;
+    sortProps: boolean;
 }
 
 const root = commandpost
@@ -17,6 +18,7 @@ const root = commandpost
     .version(pkg.version, "-v, --version")
     .option("--stdin", "Input from standard input.")
     .option("--with-query", "With GET query parameters.")
+    .option("--sort-props", "Sort type properties order.")
     .option("-o, --output <output_filename>", "Output to file.")
     .option("-n, --namespace <namespace>", "Use namespace.")
     .action((opts, args) => {
@@ -39,7 +41,8 @@ const root = commandpost
         promise.then(input => {
             let namespace = opts.namespace[0];
             let withQuery = opts.withQuery;
-            return convert(YAML.safeLoad(input), { namespace, withQuery });
+            let sortProps = opts.sortProps;
+            return convert(YAML.safeLoad(input), { namespace, withQuery, sortProps });
         }).then(model => {
             if (outputFilename) {
                 fs.writeFileSync(outputFilename, model);
