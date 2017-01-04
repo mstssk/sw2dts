@@ -1,3 +1,13 @@
+<a name="2.3.0"></a>
+# [2.3.0](https://github.com/mstssk/sw2dts/compare/v2.2.0...v2.3.0) (2017-01-04)
+
+
+### Features
+
+* Add --sort-props option ([89cc506](https://github.com/mstssk/sw2dts/commit/89cc506))
+
+
+
 <a name="2.2.0"></a>
 # [2.2.0](https://github.com/mstssk/sw2dts/compare/v2.1.4...v2.2.0) (2016-12-26)
 
