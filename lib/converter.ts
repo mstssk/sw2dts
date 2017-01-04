@@ -8,7 +8,7 @@ export function convert(data: SwaggerSpec, options: ConverterOptions = {}): Prom
         options.nameResolver = PascalCaseNameResolver;
     }
     let namespace = (options.namespace || "");
-    let jsonSchemas: {}[] = [];
+    let jsonSchemas: SchemaDefinition[] = [];
     for (let title in data.definitions) {
         let schema = data.definitions[title];
         fixRef(schema);
@@ -37,6 +37,14 @@ export function convert(data: SwaggerSpec, options: ConverterOptions = {}): Prom
             };
             jsonSchemas.push(schema);
         }
+    }
+    if (options.sortProps) {
+        jsonSchemas.filter(sd => !!sd.properties).forEach(sd => {
+            sd.properties = Object.keys(sd.properties).sort().reduce((result, key) => {
+                result[key] = sd.properties[key];
+                return result;
+            }, {} as SchemaProperties);
+        });
     }
     return dtsgen(jsonSchemas).then(text => {
         if (!namespace) {
@@ -82,6 +90,7 @@ export function PascalCaseNameResolver(path: string, pathDefinition: PathDefinit
 export interface ConverterOptions {
     namespace?: string;
     withQuery?: boolean;
+    sortProps?: boolean;
     nameResolver?: (path: string, pathDefinition: PathDefinition, options: ConverterOptions) => string;
 }
 
