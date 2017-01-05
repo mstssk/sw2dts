@@ -34,18 +34,18 @@
     "js-yaml": "^3.6.1"
   },
   "devDependencies": {
-    "@types/js-yaml": "^3.5.28",
+    "@types/js-yaml": "^3.5.29",
     "@types/mkdirp": "^0.3.29",
-    "@types/mocha": "^2.2.33",
+    "@types/mocha": "^2.2.35",
     "@types/nexpect": "^0.4.29",
-    "@types/node": "^6.0.52",
+    "@types/node": "^6.0.57",
     "@types/rimraf": "0.0.28",
     "conventional-changelog-cli": "^1.2.0",
     "mkdirp": "^0.5.1",
-    "mocha": "^2.4.5",
+    "mocha": "^3.2.0",
     "nexpect": "^0.5.0",
-    "rimraf": "^2.5.2",
-    "tslint": "^3.9.0",
+    "rimraf": "^2.5.4",
+    "tslint": "^4.2.0",
     "typescript": "^2.1.4",
     "typescript-formatter": "^4.0.1"
   }
