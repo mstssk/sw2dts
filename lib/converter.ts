@@ -22,18 +22,23 @@ export function convert(data: SwaggerSpec, options: ConverterOptions = {}): Prom
                 || props.get.parameters.some(v => v.in !== "query")) {
                 continue;
             }
+            let required: string[] = [];
             let properties = props.get.parameters.reduce((result, value) => {
                 result[value.name] = {
                     type: value.type,
                     items: value.items,
                     enum: value.enum,
                 };
+                if (value.required) {
+                    required.push(value.name);
+                }
                 return result;
             }, {} as SchemaProperties);
             let schema: SchemaDefinition = {
                 id: options.nameResolver(path, props, options),
                 type: "object",
-                properties
+                properties,
+                required,
             };
             jsonSchemas.push(schema);
         }
@@ -110,23 +115,29 @@ export interface PathDefinition {
     get?: {
         [key: string]: any; // allow anything else properties.
         description?: string,
-        parameters?: {
-            name: string,
-            in: "query" | "header" | "path" | "formData" | "body",
-            type: SchemaType;
-            enum?: string[]
-            items?: {
-                type?: SchemaType,
-                enum?: string[]
-            }
-        }[]
+        parameters?: ParameterObject[]
     };
     post?: any;
+}
+/** http://swagger.io/specification/#parameterObject */
+export interface ParameterObject {
+    name: string;
+    in: "query" | "header" | "path" | "formData" | "body";
+    required?: boolean;
+    type: SchemaType;
+    enum?: string[];
+    items?: ItemsObject;
+}
+/** http://swagger.io/specification/#itemsObject */
+export interface ItemsObject {
+    type?: SchemaType;
+    enum?: string[];
 }
 export interface SchemaDefinition {
     id?: string;
     type: string;
     properties?: SchemaProperties;
+    required?: string[];
 }
 export interface SchemaProperties {
     [key: string]: {

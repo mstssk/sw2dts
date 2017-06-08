@@ -15,6 +15,12 @@
                 ],
                 "parameters": [
                     {
+                        "name": "name",
+                        "in": "query",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
                         "name": "targets",
                         "in": "query",
                         "type": "array",
