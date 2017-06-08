@@ -1,3 +1,13 @@
+<a name="2.4.0"></a>
+# [2.4.0](https://github.com/mstssk/sw2dts/compare/v2.3.0...v2.4.0) (2017-06-08)
+
+
+### Features
+
+* Support 'required' property for GET query parameters. ([2d177d3](https://github.com/mstssk/sw2dts/commit/2d177d3))
+
+
+
 <a name="2.3.0"></a>
 # [2.3.0](https://github.com/mstssk/sw2dts/compare/v2.2.0...v2.3.0) (2017-01-04)
 
