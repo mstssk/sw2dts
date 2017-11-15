@@ -22,8 +22,8 @@ or, install with `--save-dev` option to use in [npm scripts](https://docs.npmjs.
   Options:
 
     --stdin                         Input from standard input.
-    --with-query                    With GET query parameters.
-    --sort-props                    Sort type properties order.
+    -w, --with-query                With GET query parameters.
+    -s, --sort-props                Sort type properties order.
     -o, --output <output_filename>  Output to file.
     -n, --namespace <namespace>     Use namespace.
 ```
