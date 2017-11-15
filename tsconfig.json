@@ -11,6 +11,7 @@
         "inlineSources": false,
         "newLine": "LF",
         "noEmitOnError": true,
+        "noUnusedLocals": true,
         "lib": [
             "es6"
         ],
