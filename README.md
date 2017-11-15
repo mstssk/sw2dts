@@ -6,6 +6,9 @@ sw2dts
 
 Generates TypeScript definition file(d.ts) from swagger.json
 
+[sw2dts](https://www.npmjs.com/package/sw2dts) wraps [dtsgenerator](https://www.npmjs.com/package/dtsgenerator)
+to provides several features for edge cases.
+
 ## Install
 
 ```
