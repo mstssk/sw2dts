@@ -6,10 +6,6 @@ sw2dts
 
 Generates TypeScript definition file(d.ts) from swagger.json
 
-**Warning!** :
-Should use version 1.0.4 and above.
-Old versions are broken.
-
 ## Install
 
 ```
