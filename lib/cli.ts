@@ -17,8 +17,8 @@ const root = commandpost
     .create<RootOptions, { input_filename: string }>("sw2dts [input_filename]")
     .version(pkg.version, "-v, --version")
     .option("--stdin", "Input from standard input.")
-    .option("--with-query", "With GET query parameters.")
-    .option("--sort-props", "Sort type properties order.")
+    .option("-w, --with-query", "With GET query parameters.")
+    .option("-s, --sort-props", "Sort type properties order.")
     .option("-o, --output <output_filename>", "Output to file.")
     .option("-n, --namespace <namespace>", "Use namespace.")
     .action((opts, args) => {
