@@ -58,7 +58,6 @@ commandpost
     .catch(errorHandler);
 
 function fromStdin(): Promise<string> {
-    'use strict';
     return new Promise((resolve, reject) => {
         let data = "";
         let resolved = false;
@@ -81,7 +80,6 @@ function fromStdin(): Promise<string> {
 }
 
 function fromFile(inputFileName: string): Promise<string> {
-    'use strict';
     return new Promise((resolve, reject) => {
         let file = fs.readFileSync(inputFileName, { encoding: "utf-8" });
         resolve(file);
@@ -89,7 +87,6 @@ function fromFile(inputFileName: string): Promise<string> {
 }
 
 function errorHandler(err: Error) {
-    'use strict';
     if (err instanceof Error) {
         console.error(err.stack);
     } else {
