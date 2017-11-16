@@ -24,11 +24,11 @@ or, install with `--save-dev` option to use in [npm scripts](https://docs.npmjs.
 
   Options:
 
-    --stdin                         Input from standard input.
     -w, --with-query                With GET query parameters.
     -s, --sort-props                Sort type properties order.
     -o, --output <output_filename>  Output to file.
     -n, --namespace <namespace>     Use namespace.
+    --stdin                         [Deprecated] Input from standard input.
 ```
 
 - *input_filename* should be swagger.json(or yaml) file.
