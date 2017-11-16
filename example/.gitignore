@@ -1,0 +1,4 @@
+node_modules/
+gen/
+package-lock.json
+*.js
