@@ -8,12 +8,21 @@ jobs:
       - restore_cache:
           keys:
             - npm-cache-{{ checksum "package-lock.json" }}
-      - run: npm install
+      - run:
+          name: Setup
+          command: npm install
       - save_cache:
           key: npm-cache-{{ checksum "package-lock.json" }}
           paths:
             - ./node_modules
-      - run: npm test
-      - run: npm test
-        working_directory: ./example
-
+      - run:
+          name: Test sw2dts
+          command: npm test
+      - run:
+          name: Setup example project
+          command: npm install
+          working_directory: ./example
+      - run:
+          name: Test example project
+          command: npm test
+          working_directory: ./example

@@ -8,10 +8,9 @@
     "url": "git+https://github.com/mstssk/sw2dts.git"
   },
   "scripts": {
-    "pretest": "npm install",
     "test:js": "node test-js.js",
     "test:ts": "tsc ./test-ts.ts --outDir gen -m commonjs --target ES6 && node gen/test-ts.js",
-    "test": "npm run test:ts"
+    "test": "npm run test:js && npm run test:ts"
   },
   "author": "mstssk",
   "license": "MIT",
