@@ -39,7 +39,7 @@ or, install with `--save-dev` option to use in [npm scripts](https://docs.npmjs.
 $ sw2dts swagger.json > output.d.ts
 $ sw2dts -o output.d.ts swagger.json
 $ sw2dts --namespace foo -o output.d.ts swagger.json
-$ cat swagger.json | sw2dts --stdin -o output.d.ts
+$ cat swagger.json | sw2dts -swo output.d.ts
 ```
 
 #### Tips

@@ -1,3 +1,24 @@
+<a name="2.5.0"></a>
+# [2.5.0](https://github.com/mstssk/sw2dts/compare/v2.4.0...v2.5.0) (2017-11-18)
+
+
+### Features
+
+* Add short options for --with-query and --sort-props ([35ba48a](https://github.com/mstssk/sw2dts/commit/35ba48a))
+* Read from stdin automatically. ([252fc7d](https://github.com/mstssk/sw2dts/commit/252fc7d))
+
+You have been used complicated options:
+
+```
+cat swagger.json | sw2dts --stdin --sort-props --with-query --output output.d.ts
+```
+
+You can use easily now:
+
+```
+cat swagger.json | sw2dts -swo output.d.ts
+```
+
 <a name="2.4.0"></a>
 # [2.4.0](https://github.com/mstssk/sw2dts/compare/v2.3.0...v2.4.0) (2017-06-08)
 
