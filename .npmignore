@@ -3,11 +3,14 @@ lib/**/*.ts
 !lib/**/*.d.ts
 test/
 test-cli/
-typings/
+
+# for npm
+node_modules/
+package-lock.json
 
 # misc
-circle.yml
-dtsm.json
+example/
+.circleci/
 tsconfig.json
 tslint.json
 setup.sh
