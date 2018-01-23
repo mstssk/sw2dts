@@ -19,7 +19,7 @@
   },
   "scripts": {
     "clean": "rimraf '+(lib|test)/*.js?(.map)' '+(lib|test)/*.d.ts'",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "version": "npm run changelog && git add CHANGELOG.md",
     "prebuild": "tslint './lib/**/*.ts' './test/**/*.ts'",
     "build": "tsfmt -r && tsc -p ./",
