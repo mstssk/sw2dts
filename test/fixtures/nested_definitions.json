@@ -1,0 +1,50 @@
+{
+    "swagger": "2.0",
+    "paths": {},
+    "info": {
+        "title": "Test",
+        "version": "0.0.1"
+    },
+    "definitions": {
+        "UserUpdateResponse": {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/UserResponse"
+                }
+            ]
+        },
+        "UserResponse": {
+            "type": "object",
+            "required": [
+                "data"
+            ],
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/User"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            }
+        },
+        "User": {
+            "type": "object",
+            "required": [
+                "email",
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
