@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import * as path from "path";
-import * as assert from "assert";
+import assert from "assert";
 import * as nexpect from "nexpect";
 import * as rimraf from "rimraf";
 import * as mkdirp from "mkdirp";

@@ -1,5 +1,5 @@
 import * as fs from "fs";
-import * as assert from "assert";
+import assert from "assert";
 import {
     convert,
     PascalCaseNameResolver,

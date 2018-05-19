@@ -48,7 +48,7 @@ export function convert(data: SwaggerSpec, options: ConverterOptions = {}): Prom
             }, {} as SchemaProperties);
         });
     }
-    return dtsgen(jsonSchemas).then(text => {
+    return dtsgen({ contents: jsonSchemas }).then(text => {
         if (!namespace) {
             return text;
         }
