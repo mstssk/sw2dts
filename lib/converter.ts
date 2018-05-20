@@ -1,6 +1,6 @@
 import dtsgen from "dtsgenerator";
 
-export function convert(data: SwaggerSpec, options: ConverterOptions = {}): Promise<string> {
+export async function convert(data: SwaggerSpec, options: ConverterOptions = {}): Promise<string> {
     if (!options.nameResolver) {
         options.nameResolver = PascalCaseNameResolver;
     }
@@ -48,13 +48,12 @@ export function convert(data: SwaggerSpec, options: ConverterOptions = {}): Prom
             }, {} as SchemaProperties);
         });
     }
-    return dtsgen({ contents: jsonSchemas }).then(text => {
-        if (!namespace) {
-            return text;
-        }
-        text = text.split("\n").join("\n    ").trim();
-        return `declare namespace ${namespace} {\n    ${text}\n}\n`;
-    });
+    let text = await dtsgen({ contents: jsonSchemas });
+    if (!namespace) {
+        return text;
+    }
+    text = text.split("\n").join("\n    ").trim();
+    return `declare namespace ${namespace} {\n    ${text}\n}\n`;
 }
 
 function fixRef(obj: any) {

@@ -22,7 +22,7 @@ const root = commandpost
     .option("-o, --output <output_filename>", "Output to file.")
     .option("-n, --namespace <namespace>", "Use namespace.")
     .option("--stdin", "[Deprecated] Input from standard input.")
-    .action((opts, args) => {
+    .action(async (opts, args) => {
 
         // TODO Delete '--stdin' option.
         if (opts.stdin) {
@@ -35,23 +35,19 @@ const root = commandpost
         }
 
         const outputFilename = opts.output[0];
-        const promise: Promise<string> = args.input_filename
-            ? fromFile(args.input_filename)
-            : fromStdin();
+        const namespace = opts.namespace[0];
+        const withQuery = opts.withQuery;
+        const sortProps = opts.sortProps;
 
-        promise.then(input => {
-            const namespace = opts.namespace[0];
-            const withQuery = opts.withQuery;
-            const sortProps = opts.sortProps;
-            return convert(YAML.safeLoad(input), { namespace, withQuery, sortProps });
-        }).then(model => {
-            if (outputFilename) {
-                fs.writeFileSync(outputFilename, model);
-            } else {
-                process.stdout.write(model);
-            }
-            process.exit(0);
-        }).catch(errorHandler);
+        const input = await (args.input_filename ? fromFile(args.input_filename) : fromStdin());
+        const model = await convert(YAML.safeLoad(input), { namespace, withQuery, sortProps });
+
+        if (outputFilename) {
+            fs.writeFileSync(outputFilename, model);
+        } else {
+            process.stdout.write(model);
+        }
+        process.exit(0);
     });
 
 commandpost
