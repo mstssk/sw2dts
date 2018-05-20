@@ -35,17 +35,14 @@ const root = commandpost
         }
 
         const outputFilename = opts.output[0];
-        let promise: Promise<string> = null;
-        if (args.input_filename) {
-            promise = fromFile(args.input_filename);
-        } else {
-            promise = fromStdin();
-        }
+        const promise: Promise<string> = args.input_filename
+            ? fromFile(args.input_filename)
+            : fromStdin();
 
         promise.then(input => {
-            let namespace = opts.namespace[0];
-            let withQuery = opts.withQuery;
-            let sortProps = opts.sortProps;
+            const namespace = opts.namespace[0];
+            const withQuery = opts.withQuery;
+            const sortProps = opts.sortProps;
             return convert(YAML.safeLoad(input), { namespace, withQuery, sortProps });
         }).then(model => {
             if (outputFilename) {
@@ -78,7 +75,7 @@ function fromStdin(): Promise<string> {
 
 function fromFile(inputFileName: string): Promise<string> {
     return new Promise((resolve, reject) => {
-        let file = fs.readFileSync(inputFileName, { encoding: "utf-8" });
+        const file = fs.readFileSync(inputFileName, { encoding: "utf-8" });
         resolve(file);
     });
 }

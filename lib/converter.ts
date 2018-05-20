@@ -4,23 +4,23 @@ export function convert(data: SwaggerSpec, options: ConverterOptions = {}): Prom
     if (!options.nameResolver) {
         options.nameResolver = PascalCaseNameResolver;
     }
-    let namespace = (options.namespace || "");
-    let jsonSchemas: SchemaDefinition[] = [];
-    for (let title in data.definitions) {
-        let schema = data.definitions[title];
+    const namespace = (options.namespace || "");
+    const jsonSchemas: SchemaDefinition[] = [];
+    for (const title in data.definitions) {
+        const schema = data.definitions[title];
         fixRef(schema);
         schema.id = title;
         jsonSchemas.push(schema);
     }
     if (options.withQuery) {
-        for (let path in (data.paths || [])) {
-            let props = data.paths[path];
+        for (const path in (data.paths || [])) {
+            const props = data.paths[path];
             if (!props.get || isEmpty(props.get.parameters)
                 || props.get.parameters.some(v => v.in !== "query")) {
                 continue;
             }
-            let required: string[] = [];
-            let properties = props.get.parameters.reduce((result, value) => {
+            const required: string[] = [];
+            const properties = props.get.parameters.reduce((result, value) => {
                 result[value.name] = {
                     type: value.type,
                     items: value.items,
@@ -31,7 +31,7 @@ export function convert(data: SwaggerSpec, options: ConverterOptions = {}): Prom
                 }
                 return result;
             }, {} as SchemaProperties);
-            let schema: SchemaDefinition = {
+            const schema: SchemaDefinition = {
                 id: options.nameResolver(path, props, options),
                 type: "object",
                 properties,
@@ -58,7 +58,7 @@ export function convert(data: SwaggerSpec, options: ConverterOptions = {}): Prom
 }
 
 function fixRef(obj: any) {
-    for (let key in obj) {
+    for (const key in obj) {
         if (key === "$ref") {
             obj["$ref"] = obj["$ref"].split("/").pop();
         } else if (typeof obj[key] === "object") {
