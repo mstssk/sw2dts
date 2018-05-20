@@ -22,7 +22,7 @@ const root = commandpost
     .option("-o, --output <output_filename>", "Output to file.")
     .option("-n, --namespace <namespace>", "Use namespace.")
     .option("--stdin", "[Deprecated] Input from standard input.")
-    .action((opts, args) => {
+    .action(async (opts, args) => {
 
         // TODO Delete '--stdin' option.
         if (opts.stdin) {
@@ -35,35 +35,28 @@ const root = commandpost
         }
 
         const outputFilename = opts.output[0];
-        let promise: Promise<string> = null;
-        if (args.input_filename) {
-            promise = fromFile(args.input_filename);
-        } else {
-            promise = fromStdin();
-        }
+        const namespace = opts.namespace[0];
+        const withQuery = opts.withQuery;
+        const sortProps = opts.sortProps;
 
-        promise.then(input => {
-            let namespace = opts.namespace[0];
-            let withQuery = opts.withQuery;
-            let sortProps = opts.sortProps;
-            return convert(YAML.safeLoad(input), { namespace, withQuery, sortProps });
-        }).then(model => {
-            if (outputFilename) {
-                fs.writeFileSync(outputFilename, model);
-            } else {
-                process.stdout.write(model);
-            }
-            process.exit(0);
-        }).catch(errorHandler);
+        const input = await (args.input_filename ? fromFile(args.input_filename) : fromStdin());
+        const model = await convert(YAML.safeLoad(input), { namespace, withQuery, sortProps });
+
+        if (outputFilename) {
+            fs.writeFileSync(outputFilename, model);
+        } else {
+            process.stdout.write(model);
+        }
+        process.exit(0);
     });
 
 commandpost
     .exec(root, process.argv)
     .catch(errorHandler);
 
-function fromStdin(): Promise<string> {
+function fromStdin() {
     process.stdin.setEncoding("utf-8");
-    return new Promise((resolve, reject) => {
+    return new Promise<string>((resolve, reject) => {
         let data = "";
         process.stdin
             .on("data", chunk => data += chunk)
@@ -76,10 +69,9 @@ function fromStdin(): Promise<string> {
     });
 }
 
-function fromFile(inputFileName: string): Promise<string> {
-    return new Promise((resolve, reject) => {
-        let file = fs.readFileSync(inputFileName, { encoding: "utf-8" });
-        resolve(file);
+function fromFile(inputFileName: string) {
+    return new Promise<string>((resolve, reject) => {
+        resolve(fs.readFileSync(inputFileName, { encoding: "utf-8" }));
     });
 }
 
