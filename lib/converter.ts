@@ -1,6 +1,6 @@
 import dtsgen from "dtsgenerator";
 
-export async function convert(data: SwaggerSpec, options: ConverterOptions = {}): Promise<string> {
+export async function convert(data: SwaggerSpec, options: ConverterOptions = {}) {
     if (!options.nameResolver) {
         options.nameResolver = PascalCaseNameResolver;
     }
@@ -73,7 +73,7 @@ function isEmpty(array: any[]) {
 /**
  * Default name resolver which resolve name as PascalCase from path string.
  */
-export function PascalCaseNameResolver(path: string, pathDefinition: PathDefinition, options: ConverterOptions): string {
+export function PascalCaseNameResolver(path: string, pathDefinition: PathDefinition, options: ConverterOptions) {
     options = options || {};
     path = path.replace(/{[^}]*}/g, '').replace(/\/$/, '');
     path = path.replace(/(^|[\/_-])(\w)/g, (substr, ...args) => {

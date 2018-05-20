@@ -54,9 +54,9 @@ commandpost
     .exec(root, process.argv)
     .catch(errorHandler);
 
-function fromStdin(): Promise<string> {
+function fromStdin() {
     process.stdin.setEncoding("utf-8");
-    return new Promise((resolve, reject) => {
+    return new Promise<string>((resolve, reject) => {
         let data = "";
         process.stdin
             .on("data", chunk => data += chunk)
@@ -69,10 +69,9 @@ function fromStdin(): Promise<string> {
     });
 }
 
-function fromFile(inputFileName: string): Promise<string> {
-    return new Promise((resolve, reject) => {
-        const file = fs.readFileSync(inputFileName, { encoding: "utf-8" });
-        resolve(file);
+function fromFile(inputFileName: string) {
+    return new Promise<string>((resolve, reject) => {
+        resolve(fs.readFileSync(inputFileName, { encoding: "utf-8" }));
     });
 }
 
