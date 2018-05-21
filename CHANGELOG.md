@@ -1,3 +1,10 @@
+<a name="2.6.0"></a>
+# [2.6.0](https://github.com/mstssk/sw2dts/compare/v2.5.0...v2.6.0) (2018-05-21)
+
+* Fix [#29](https://github.com/mstssk/sw2dts/issues/29).
+* Updates dependencies: dtsgenerator@1.0.0, and so on.
+
+
 <a name="2.5.0"></a>
 # [2.5.0](https://github.com/mstssk/sw2dts/compare/v2.4.0...v2.5.0) (2017-11-18)
 
