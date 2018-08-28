@@ -1,3 +1,10 @@
+<a name="2.6.1"></a>
+## [2.6.1](https://github.com/mstssk/sw2dts/compare/v2.6.0...v2.6.1) (2018-08-28)
+
+* Add LICENSE file.
+    * Fix [#34](https://github.com/mstssk/sw2dts/issues/34).
+
+
 <a name="2.6.0"></a>
 # [2.6.0](https://github.com/mstssk/sw2dts/compare/v2.5.0...v2.6.0) (2018-05-21)
 
