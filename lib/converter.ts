@@ -2,7 +2,7 @@ import dtsgen from "dtsgenerator";
 
 export async function conbert(data: SwaggerSpec, options: ConverterOptions = {}) {
     if (!options.nameResolver) {
-        options.nameResolver = PascalCaseNameResolver;
+        options.nameResolver = PascalCaseNameResolver
     }
     const namespace = (options.namespace || "");
     const jsonSchemas: SchemaDefinition[] = [];
