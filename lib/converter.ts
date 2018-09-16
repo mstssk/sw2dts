@@ -1,6 +1,7 @@
 import dtsgen from "dtsgenerator";
 
-export async function conbert(data: SwaggerSpec, options: ConverterOptions = {}) {
+export async function convert(data: SwaggerSpec, options: ConverterOptions = {}) {
+    // test cource
     if (!options.nameResolver) {
         options.nameResolver = PascalCaseNameResolver;
     }
