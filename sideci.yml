@@ -1,0 +1,10 @@
+linter:
+  misspell:
+    exclude:
+      - '**/*.js'
+    targets:
+      - lib
+      - test
+    options:
+      locale: US
+      # ignore: sw2dts
