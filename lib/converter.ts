@@ -1,6 +1,7 @@
 import dtsgen from "dtsgenerator";
 
 export async function convert(data: SwaggerSpec, options: ConverterOptions = {}) {
+    // test cource hoge centor
     if (!options.nameResolver) {
         options.nameResolver = PascalCaseNameResolver;
     }

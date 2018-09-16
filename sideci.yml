@@ -1,0 +1,8 @@
+linter:
+  misspell:
+    targets:
+      - "lib/*.ts"
+      - "test/*.ts"
+    options:
+      locale: US
+      # ignore: sw2dts
