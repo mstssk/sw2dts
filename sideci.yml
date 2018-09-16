@@ -1,10 +1,8 @@
 linter:
   misspell:
-    exclude:
-      - '**/*.js'
     targets:
-      - lib
-      - test
+      - "lib/*.ts"
+      - "test/*.ts"
     options:
       locale: US
       # ignore: sw2dts
