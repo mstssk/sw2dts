@@ -1,8 +1,26 @@
-version: 2
+version: 2.1
+
+workflows:
+  build_each_env:
+    jobs: # https://nodejs.org/ja/about/releases/
+      - build:
+          name: Node.js 8
+          node_ver: 8  # EOL: Jan 2020 (LTS)
+      - build:
+          name: Node.js 10
+          node_ver: 10 # EOL: Oct 2020 (LTS)
+      - build:
+          name: Node.js 11
+          node_ver: 11 # EOL: Jul 2019
+
 jobs:
   build:
+    parameters:
+      node_ver:
+        type: integer
+        default: 10
     docker:
-      - image: circleci/node:10
+      - image: circleci/node:<< parameters.node_ver >>
     steps:
       - checkout
       - restore_cache:
