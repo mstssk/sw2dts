@@ -28,6 +28,7 @@
     },
     "include": [
         "lib/**/*.ts",
+        "types/*.d.ts",
         "test/**/*.ts"
     ],
     "exclude": [
