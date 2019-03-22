@@ -21,8 +21,10 @@
     "clean": "rimraf '+(lib|test)/*.js?(.map)' '+(lib|test)/*.d.ts'",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "version": "npm run changelog && git add CHANGELOG.md",
-    "prebuild": "tslint './lib/**/*.ts' './test/**/*.ts'",
-    "build": "tsfmt -r && tsc -p ./",
+    "fmt": "prettier --write './lib/**/*.ts' './test/*.ts'",
+    "lint": "eslint './lib/**/*.ts' './test/*.ts'",
+    "prebuild": "npm run lint",
+    "build": "tsc -p ./",
     "pretest": "npm run clean && npm run build",
     "test": "mocha test/*.js"
   },
@@ -40,12 +42,16 @@
     "@types/nexpect": "^0.4.30",
     "@types/node": "^11.11.5",
     "@types/rimraf": "^2.0.2",
+    "@typescript-eslint/eslint-plugin": "^1.5.0",
     "conventional-changelog-cli": "^2.0.12",
+    "eslint": "^5.15.3",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-prettier": "^3.0.1",
     "mkdirp": "^0.5.1",
     "mocha": "^6.0.2",
     "nexpect": "^0.5.0",
+    "prettier": "^1.16.4",
     "rimraf": "^2.6.3",
-    "typescript": "^3.3.4000",
-    "typescript-formatter": "^7.2.2"
+    "typescript": "^3.3.4000"
   }
 }
