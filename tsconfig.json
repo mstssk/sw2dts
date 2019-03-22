@@ -4,11 +4,7 @@
         "target": "es5",
         "noImplicitAny": true,
         "removeComments": false,
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
-        "sourceMap": false,
         "declaration": true,
-        "inlineSources": false,
         "newLine": "LF",
         "noEmitOnError": true,
         "noUnusedLocals": true,
@@ -28,6 +24,7 @@
     },
     "include": [
         "lib/**/*.ts",
+        "types/*.d.ts",
         "test/**/*.ts"
     ],
     "exclude": [

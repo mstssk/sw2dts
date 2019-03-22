@@ -1,4 +1,5 @@
 import dtsgen from "dtsgenerator";
+import { SwaggerSpec, PathDefinition, SchemaDefinition, SchemaProperties } from "../types/swagger";
 
 export async function convert(data: SwaggerSpec, options: ConverterOptions = {}) {
     if (!options.nameResolver) {
@@ -19,7 +20,7 @@ export async function convert(data: SwaggerSpec, options: ConverterOptions = {})
                 continue;
             }
             const required: string[] = [];
-            const properties = props.get.parameters.reduce((result, value) => {
+            const properties = props.get.parameters.reduce<SchemaProperties>((result, value) => {
                 result[value.name] = {
                     type: value.type,
                     items: value.items,
@@ -29,7 +30,7 @@ export async function convert(data: SwaggerSpec, options: ConverterOptions = {})
                     required.push(value.name);
                 }
                 return result;
-            }, {} as SchemaProperties);
+            }, {});
             const schema: SchemaDefinition = {
                 id: options.nameResolver(path, props, options),
                 type: "object",
@@ -41,16 +42,16 @@ export async function convert(data: SwaggerSpec, options: ConverterOptions = {})
     }
     if (options.sortProps) {
         jsonSchemas.filter(sd => !!sd.properties).forEach(sd => {
-            sd.properties = Object.keys(sd.properties).sort().reduce((result, key) => {
+            sd.properties = Object.keys(sd.properties).sort().reduce<SchemaProperties>((result, key) => {
                 result[key] = sd.properties[key];
                 return result;
-            }, {} as SchemaProperties);
+            }, {});
         });
     }
     return await dtsgen({ contents: jsonSchemas, namespaceName: options.namespace });
 }
 
-function fixRef(obj: any) {
+function fixRef(obj: Record<string, any>) {
     for (const key in obj) {
         if (key === "$ref") {
             obj["$ref"] = obj["$ref"].split("/").pop();
@@ -60,7 +61,7 @@ function fixRef(obj: any) {
     }
 }
 
-function isEmpty(array: any[]) {
+function isEmpty(array: ArrayLike<any>) {
     return array ? !array.length : true;
 }
 
@@ -85,58 +86,3 @@ export interface ConverterOptions {
     sortProps?: boolean;
     nameResolver?: (path: string, pathDefinition: PathDefinition, options: ConverterOptions) => string;
 }
-
-// TODO separate below type definitions into another file.
-// ---- Swagger Specifications ----
-
-export interface SwaggerSpec {
-    [key: string]: any; // allow anything else properties.
-    paths?: {
-        [path: string]: PathDefinition;
-    };
-    definitions?: {
-        [name: string]: SchemaDefinition;
-    };
-}
-export interface PathDefinition {
-    get?: {
-        [key: string]: any; // allow anything else properties.
-        description?: string,
-        parameters?: ParameterObject[]
-    };
-    post?: any;
-}
-/** http://swagger.io/specification/#parameterObject */
-export interface ParameterObject {
-    name: string;
-    in: "query" | "header" | "path" | "formData" | "body";
-    required?: boolean;
-    type: SchemaType;
-    enum?: string[];
-    items?: ItemsObject;
-}
-/** http://swagger.io/specification/#itemsObject */
-export interface ItemsObject {
-    type?: SchemaType;
-    enum?: string[];
-}
-export interface SchemaDefinition {
-    id?: string;
-    type: string;
-    properties?: SchemaProperties;
-    required?: string[];
-}
-export interface SchemaProperties {
-    [key: string]: {
-        format?: string;
-        type?: SchemaType;
-        "$ref"?: string;
-        enum?: string[];
-        items?: {
-            format?: string;
-            type?: SchemaType;
-            enum?: string[];
-        };
-    };
-}
-export type SchemaType = "string" | "number" | "integer" | "boolean" | "array" | "file";
