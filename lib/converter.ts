@@ -4,7 +4,6 @@ export async function convert(data: SwaggerSpec, options: ConverterOptions = {})
     if (!options.nameResolver) {
         options.nameResolver = PascalCaseNameResolver;
     }
-    const namespace = (options.namespace || "");
     const jsonSchemas: SchemaDefinition[] = [];
     for (const title in data.definitions) {
         const schema = data.definitions[title];
@@ -48,12 +47,7 @@ export async function convert(data: SwaggerSpec, options: ConverterOptions = {})
             }, {} as SchemaProperties);
         });
     }
-    let text = await dtsgen({ contents: jsonSchemas });
-    if (!namespace) {
-        return text;
-    }
-    text = text.split("\n").join("\n    ").trim();
-    return `declare namespace ${namespace} {\n    ${text}\n}\n`;
+    return await dtsgen({ contents: jsonSchemas, namespaceName: options.namespace });
 }
 
 function fixRef(obj: any) {
