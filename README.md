@@ -4,10 +4,14 @@ sw2dts
 [![npm version](https://badge.fury.io/js/sw2dts.svg)](https://badge.fury.io/js/sw2dts)
 [![Circle CI](https://circleci.com/gh/mstssk/sw2dts.svg?style=svg)](https://circleci.com/gh/mstssk/sw2dts)
 
-Generates TypeScript definition file(d.ts) from swagger.json
+Generates TypeScript definition file(d.ts) from swagger.json for edge cases.
+
+## Attention
 
 [sw2dts](https://www.npmjs.com/package/sw2dts) wraps [dtsgenerator](https://www.npmjs.com/package/dtsgenerator)
-to provides several features for edge cases.
+to provides several features for **edge cases**.
+
+I recommend to use [dtsgenerator](https://www.npmjs.com/package/dtsgenerator) directly or other generators such as [Swagger Codegen](https://swagger.io/tools/swagger-codegen/), if you use swagger generally.
 
 ## Install
 
