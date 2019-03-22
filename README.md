@@ -73,6 +73,5 @@ sw2dts.convert(data, option).then(dts => {
 ## How to build
 
 ```
-./setup.sh
-npm test
+npm cit
 ```
