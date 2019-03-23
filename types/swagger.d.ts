@@ -1,53 +1,53 @@
 // ---- Swagger Specifications ----
 
 export interface SwaggerSpec {
-    [key: string]: any; // allow anything else properties.
-    paths?: {
-        [path: string]: PathDefinition;
-    };
-    definitions?: {
-        [name: string]: SchemaDefinition;
-    };
+  [key: string]: any; // allow anything else properties.
+  paths?: {
+    [path: string]: PathDefinition;
+  };
+  definitions?: {
+    [name: string]: SchemaDefinition;
+  };
 }
 export interface PathDefinition {
-    get?: {
-        [key: string]: any; // allow anything else properties.
-        description?: string,
-        parameters?: ParameterObject[]
-    };
-    post?: any;
+  get?: {
+    [key: string]: any; // allow anything else properties.
+    description?: string;
+    parameters?: ParameterObject[];
+  };
+  post?: any;
 }
 /** http://swagger.io/specification/#parameterObject */
 export interface ParameterObject {
-    name: string;
-    in: "query" | "header" | "path" | "formData" | "body";
-    required?: boolean;
-    type: SchemaType;
-    enum?: string[];
-    items?: ItemsObject;
+  name: string;
+  in: "query" | "header" | "path" | "formData" | "body";
+  required?: boolean;
+  type: SchemaType;
+  enum?: string[];
+  items?: ItemsObject;
 }
 /** http://swagger.io/specification/#itemsObject */
 export interface ItemsObject {
-    type?: SchemaType;
-    enum?: string[];
+  type?: SchemaType;
+  enum?: string[];
 }
 export interface SchemaDefinition {
-    id?: string;
-    type: string;
-    properties?: SchemaProperties;
-    required?: string[];
+  id?: string;
+  type: string;
+  properties?: SchemaProperties;
+  required?: string[];
 }
 export interface SchemaProperties {
-    [key: string]: {
-        format?: string;
-        type?: SchemaType;
-        "$ref"?: string;
-        enum?: string[];
-        items?: {
-            format?: string;
-            type?: SchemaType;
-            enum?: string[];
-        };
+  [key: string]: {
+    format?: string;
+    type?: SchemaType;
+    $ref?: string;
+    enum?: string[];
+    items?: {
+      format?: string;
+      type?: SchemaType;
+      enum?: string[];
     };
+  };
 }
 export type SchemaType = "string" | "number" | "integer" | "boolean" | "array" | "file";
