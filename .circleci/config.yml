@@ -5,13 +5,16 @@ workflows:
     jobs: # https://nodejs.org/ja/about/releases/
       - build:
           name: Node.js 8
-          node_ver: 8  # EOL: Jan 2020 (LTS)
+          node_ver: 8  # EOL: 2019-12-31 (LTS)
       - build:
           name: Node.js 10
-          node_ver: 10 # EOL: Oct 2020 (LTS)
+          node_ver: 10 # EOL: 2021-04-01 (LTS)
       - build:
           name: Node.js 11
-          node_ver: 11 # EOL: Jul 2019
+          node_ver: 11 # EOL: 2019-06-01
+      - build:
+          name: Node.js 12
+          node_ver: 12 # EOL: 2022-04-01 (LTS)
 
 jobs:
   build:
