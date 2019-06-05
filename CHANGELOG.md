@@ -1,3 +1,16 @@
+## [2.6.2](https://github.com/mstssk/sw2dts/compare/v2.6.1...v2.6.2) (2019-06-05)
+
+
+### Features
+
+* Delegate '--namespace' option to dtsgenerator ([026d765](https://github.com/mstssk/sw2dts/commit/026d765))
+
+### Bug Fixes
+
+* Update dependencies.
+    * Fix some security issues in dependencies.
+
+
 <a name="2.6.1"></a>
 ## [2.6.1](https://github.com/mstssk/sw2dts/compare/v2.6.0...v2.6.1) (2018-08-28)
 
