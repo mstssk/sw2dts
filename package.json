@@ -43,7 +43,7 @@
     "@types/node": "^10.14.2",
     "@types/rimraf": "^2.0.2",
     "@typescript-eslint/eslint-plugin": "^1.5.0",
-    "conventional-changelog-cli": "^2.0.12",
+    "conventional-changelog-cli": "^2.0.21",
     "eslint": "^5.15.3",
     "eslint-config-prettier": "^4.1.0",
     "eslint-plugin-prettier": "^3.0.1",
