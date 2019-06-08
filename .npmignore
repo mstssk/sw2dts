@@ -13,4 +13,7 @@ example/
 .circleci/
 tsconfig.json
 tslint.json
+.eslintrc.json
+.prettierrc.json
+.DS_Store
 setup.sh
