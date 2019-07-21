@@ -2,24 +2,14 @@
     "compilerOptions": {
         "module": "commonjs",
         "target": "es5",
-        "noImplicitAny": true,
+        "strict": true,
         "removeComments": false,
         "declaration": true,
-        "newLine": "LF",
         "noEmitOnError": true,
         "noUnusedLocals": true,
-        "alwaysStrict": true,
         "esModuleInterop": true,
         "lib": [
             "es6"
-        ],
-        "types": [
-            "node",
-            "mocha",
-            "nexpect",
-            "mkdirp",
-            "rimraf",
-            "js-yaml"
         ]
     },
     "include": [

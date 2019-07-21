@@ -14,8 +14,16 @@ export async function convert(data: SwaggerSpec, options: ConverterOptions = {})
   }
   if (options.withQuery) {
     for (const path in data.paths || []) {
+      if (!data.paths) {
+        continue;
+      }
       const props = data.paths[path];
-      if (!props.get || isEmpty(props.get.parameters) || props.get.parameters.some(v => v.in !== "query")) {
+      if (
+        !props.get ||
+        !props.get.parameters ||
+        !props.get.parameters.length ||
+        props.get.parameters.some(v => v.in !== "query")
+      ) {
         continue;
       }
       const required: string[] = [];
@@ -40,16 +48,18 @@ export async function convert(data: SwaggerSpec, options: ConverterOptions = {})
     }
   }
   if (options.sortProps) {
-    jsonSchemas
-      .filter(sd => !!sd.properties)
-      .forEach(sd => {
-        sd.properties = Object.keys(sd.properties)
-          .sort()
-          .reduce<SchemaProperties>((result, key) => {
-            result[key] = sd.properties[key];
-            return result;
-          }, {});
-      });
+    jsonSchemas.forEach(sd => {
+      if (!sd.properties) {
+        return;
+      }
+      const srcProps = sd.properties;
+      sd.properties = Object.keys(srcProps)
+        .sort()
+        .reduce<SchemaProperties>((result, key) => {
+          result[key] = srcProps[key];
+          return result;
+        }, {});
+    });
   }
   return await dtsgen({ contents: jsonSchemas, namespaceName: options.namespace });
 }
@@ -62,10 +72,6 @@ function fixRef(obj: Record<string, any>) {
       fixRef(obj[key]);
     }
   }
-}
-
-function isEmpty(array: ArrayLike<any>) {
-  return array ? !array.length : true;
 }
 
 /**
