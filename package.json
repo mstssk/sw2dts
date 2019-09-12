@@ -1,6 +1,6 @@
 {
   "name": "sw2dts",
-  "version": "2.6.2",
+  "version": "2.7.0-beta.2",
   "description": "Generates TypeScript definition file(d.ts) from swagger.json",
   "keywords": [
     "typescript",

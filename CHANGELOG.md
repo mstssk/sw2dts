@@ -1,3 +1,12 @@
+# [2.7.0-beta.2](https://github.com/mstssk/sw2dts/compare/v2.6.2...v2.7.0-beta.2) (2019-09-12)
+
+
+### Features
+
+* Support OpenAPI v3 experimentally. ([9d053fc](https://github.com/mstssk/sw2dts/commit/9d053fc))
+
+
+
 ## [2.6.2](https://github.com/mstssk/sw2dts/compare/v2.6.1...v2.6.2) (2019-06-05)
 
 
