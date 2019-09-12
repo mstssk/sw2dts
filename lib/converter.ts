@@ -12,6 +12,15 @@ export async function convert(data: SwaggerSpec, options: ConverterOptions = {})
     schema.id = title;
     jsonSchemas.push(schema);
   }
+  // FIXME: Support OpenAPI 3 patchy
+  if (data.components) {
+    for (const title in data.components.schemas) {
+      const schema = data.components.schemas[title];
+      fixRef(schema);
+      schema.id = title;
+      jsonSchemas.push(schema);
+    }
+  }
   if (options.withQuery) {
     for (const path in data.paths || []) {
       if (!data.paths) {
@@ -33,6 +42,14 @@ export async function convert(data: SwaggerSpec, options: ConverterOptions = {})
           items: value.items,
           enum: value.enum
         };
+        // FIXME: Support OpenAPI 3 patchy
+        if (value.schema) {
+          result[value.name] = {
+            type: value.schema.type,
+            items: value.schema.items,
+            enum: value.schema.enum
+          };
+        }
         if (value.required) {
           required.push(value.name);
         }

@@ -1,0 +1,2737 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "weather.gov API",
+        "description": "weather.gov API",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://api.weather.gov",
+            "description": "Production server"
+        }
+    ],
+    "paths": {
+        "/alerts": {
+            "get": {
+                "description": "Returns all alerts",
+                "parameters": [
+                    {
+                        "name": "active",
+                        "in": "query",
+                        "description": "Active alerts",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "start",
+                        "in": "query",
+                        "description": "Start time",
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    },
+                    {
+                        "name": "end",
+                        "in": "query",
+                        "description": "End time",
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "Status (actual, exercise, system, test, draft)",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "actual",
+                                    "exercise",
+                                    "system",
+                                    "test",
+                                    "draft"
+                                ]
+                            }
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "message_type",
+                        "in": "query",
+                        "description": "Message type (alert, update, cancel)",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "alert",
+                                    "update",
+                                    "cancel"
+                                ]
+                            }
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "event",
+                        "in": "query",
+                        "description": "Event name",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "format": "^[A-Za-z0-9 ]+$"
+                            }
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "code",
+                        "in": "query",
+                        "description": "Event code",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "format": "^\\w{3}$"
+                            }
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "region_type",
+                        "in": "query",
+                        "description": "Region type (land or marine)\n\nThis parameter is incompatible with the following parameters: area, point, region, zone",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "land",
+                                "marine"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "point",
+                        "in": "query",
+                        "description": "Point (latitude,longitude)\n\nThis parameter is incompatible with the following parameters: area, region, region_type, zone",
+                        "schema": {
+                            "type": "string",
+                            "format": "^(-?\\d+(?:\\.\\d+)?),(-?\\d+(?:\\.\\d+)?)$"
+                        }
+                    },
+                    {
+                        "name": "region",
+                        "in": "query",
+                        "description": "Marine region code\n\nThis parameter is incompatible with the following parameters: area, point, region_type, zone",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "AL",
+                                    "AT",
+                                    "GL",
+                                    "GM",
+                                    "PA",
+                                    "PI"
+                                ]
+                            }
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "area",
+                        "in": "query",
+                        "description": "State/marine area code\n\nThis parameter is incompatible with the following parameters: point, region, region_type, zone",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "AL",
+                                    "AK",
+                                    "AS",
+                                    "AR",
+                                    "AZ",
+                                    "CA",
+                                    "CO",
+                                    "CT",
+                                    "DE",
+                                    "DC",
+                                    "FL",
+                                    "GA",
+                                    "GU",
+                                    "HI",
+                                    "ID",
+                                    "IL",
+                                    "IN",
+                                    "IA",
+                                    "KS",
+                                    "KY",
+                                    "LA",
+                                    "ME",
+                                    "MD",
+                                    "MA",
+                                    "MI",
+                                    "MN",
+                                    "MS",
+                                    "MO",
+                                    "MT",
+                                    "NE",
+                                    "NV",
+                                    "NH",
+                                    "NJ",
+                                    "NM",
+                                    "NY",
+                                    "NC",
+                                    "ND",
+                                    "OH",
+                                    "OK",
+                                    "OR",
+                                    "PA",
+                                    "PR",
+                                    "RI",
+                                    "SC",
+                                    "SD",
+                                    "TN",
+                                    "TX",
+                                    "UT",
+                                    "VT",
+                                    "VI",
+                                    "VA",
+                                    "WA",
+                                    "WV",
+                                    "WI",
+                                    "WY",
+                                    "PZ",
+                                    "PK",
+                                    "PH",
+                                    "PS",
+                                    "PM",
+                                    "AN",
+                                    "AM",
+                                    "GM",
+                                    "LS",
+                                    "LM",
+                                    "LH",
+                                    "LC",
+                                    "LE",
+                                    "LO"
+                                ]
+                            }
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "zone",
+                        "in": "query",
+                        "description": "Zone ID (forecast or county)\n\nThis parameter is incompatible with the following parameters: area, point, region, region_type",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "format": "^\\w{2}[CZ]\\d{3}$"
+                            }
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "urgency",
+                        "in": "query",
+                        "description": "Urgency (immediate, expected, future, past, unknown)",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "unknown",
+                                    "past",
+                                    "future",
+                                    "expected",
+                                    "immediate"
+                                ]
+                            }
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "severity",
+                        "in": "query",
+                        "description": "Severity (extreme, severe, moderate, minor, unknown)",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "unknown",
+                                    "minor",
+                                    "moderate",
+                                    "severe",
+                                    "extreme"
+                                ]
+                            }
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "certainty",
+                        "in": "query",
+                        "description": "Certainty (observed, likely, possible, unlikely, unknown)",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "unknown",
+                                    "unlikely",
+                                    "possible",
+                                    "likely",
+                                    "observed"
+                                ]
+                            }
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limit",
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 500
+                        }
+                    },
+                    {
+                        "name": "cursor",
+                        "in": "query",
+                        "description": "Pagination cursor",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/geo+json": {},
+                            "application/ld+json": {},
+                            "application/atom+xml": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/alerts/active": {
+            "get": {
+                "description": "Returns all currently active alerts",
+                "parameters": [
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "Status (actual, exercise, system, test, draft)",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "actual",
+                                    "exercise",
+                                    "system",
+                                    "test",
+                                    "draft"
+                                ]
+                            }
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "message_type",
+                        "in": "query",
+                        "description": "Message type (alert, update, cancel)",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "alert",
+                                    "update",
+                                    "cancel"
+                                ]
+                            }
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "event",
+                        "in": "query",
+                        "description": "Event name",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "format": "^[A-Za-z0-9 ]+$"
+                            }
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "code",
+                        "in": "query",
+                        "description": "Event code",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "format": "^\\w{3}$"
+                            }
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "region_type",
+                        "in": "query",
+                        "description": "Region type (land or marine)\n\nThis parameter is incompatible with the following parameters: area, point, region, zone",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "land",
+                                "marine"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "point",
+                        "in": "query",
+                        "description": "Point (latitude,longitude)\n\nThis parameter is incompatible with the following parameters: area, region, region_type, zone",
+                        "schema": {
+                            "type": "string",
+                            "format": "^(-?\\d+(?:\\.\\d+)?),(-?\\d+(?:\\.\\d+)?)$"
+                        }
+                    },
+                    {
+                        "name": "region",
+                        "in": "query",
+                        "description": "Marine region code\n\nThis parameter is incompatible with the following parameters: area, point, region_type, zone",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "AL",
+                                    "AT",
+                                    "GL",
+                                    "GM",
+                                    "PA",
+                                    "PI"
+                                ]
+                            }
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "area",
+                        "in": "query",
+                        "description": "State/marine area code\n\nThis parameter is incompatible with the following parameters: point, region, region_type, zone",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "AL",
+                                    "AK",
+                                    "AS",
+                                    "AR",
+                                    "AZ",
+                                    "CA",
+                                    "CO",
+                                    "CT",
+                                    "DE",
+                                    "DC",
+                                    "FL",
+                                    "GA",
+                                    "GU",
+                                    "HI",
+                                    "ID",
+                                    "IL",
+                                    "IN",
+                                    "IA",
+                                    "KS",
+                                    "KY",
+                                    "LA",
+                                    "ME",
+                                    "MD",
+                                    "MA",
+                                    "MI",
+                                    "MN",
+                                    "MS",
+                                    "MO",
+                                    "MT",
+                                    "NE",
+                                    "NV",
+                                    "NH",
+                                    "NJ",
+                                    "NM",
+                                    "NY",
+                                    "NC",
+                                    "ND",
+                                    "OH",
+                                    "OK",
+                                    "OR",
+                                    "PA",
+                                    "PR",
+                                    "RI",
+                                    "SC",
+                                    "SD",
+                                    "TN",
+                                    "TX",
+                                    "UT",
+                                    "VT",
+                                    "VI",
+                                    "VA",
+                                    "WA",
+                                    "WV",
+                                    "WI",
+                                    "WY",
+                                    "PZ",
+                                    "PK",
+                                    "PH",
+                                    "PS",
+                                    "PM",
+                                    "AN",
+                                    "AM",
+                                    "GM",
+                                    "LS",
+                                    "LM",
+                                    "LH",
+                                    "LC",
+                                    "LE",
+                                    "LO"
+                                ]
+                            }
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "zone",
+                        "in": "query",
+                        "description": "Zone ID (forecast or county)\n\nThis parameter is incompatible with the following parameters: area, point, region, region_type",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "format": "^\\w{2}[CZ]\\d{3}$"
+                            }
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "urgency",
+                        "in": "query",
+                        "description": "Urgency (immediate, expected, future, past, unknown)",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "unknown",
+                                    "past",
+                                    "future",
+                                    "expected",
+                                    "immediate"
+                                ]
+                            }
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "severity",
+                        "in": "query",
+                        "description": "Severity (extreme, severe, moderate, minor, unknown)",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "unknown",
+                                    "minor",
+                                    "moderate",
+                                    "severe",
+                                    "extreme"
+                                ]
+                            }
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "certainty",
+                        "in": "query",
+                        "description": "Certainty (observed, likely, possible, unlikely, unknown)",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "unknown",
+                                    "unlikely",
+                                    "possible",
+                                    "likely",
+                                    "observed"
+                                ]
+                            }
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limit",
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 500
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/geo+json": {},
+                            "application/ld+json": {},
+                            "application/atom+xml": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/alerts/{id}": {
+            "get": {
+                "description": "Returns a specific alert",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string",
+                            "format": "^(?:\\w+-)+(?:\\d+-?)+$"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/geo+json": {},
+                            "application/ld+json": {},
+                            "application/cap+xml": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/alerts/types": {
+            "get": {
+                "description": "Returns a list of alert types",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/ld+json": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/alerts/active/count": {
+            "get": {
+                "description": "Returns info on the number of active alerts",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/ld+json": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/alerts/active/zone/{zoneId}": {
+            "get": {
+                "description": "Returns active alerts for the given zone",
+                "parameters": [
+                    {
+                        "name": "zoneId",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string",
+                            "format": "^\\w{2}[CZ]\\d{3}$"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/geo+json": {},
+                            "application/ld+json": {},
+                            "application/atom+xml": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/alerts/active/area/{area}": {
+            "get": {
+                "description": "Returns active alerts for the given area (state or marine area)",
+                "parameters": [
+                    {
+                        "name": "area",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "AL",
+                                "AK",
+                                "AS",
+                                "AR",
+                                "AZ",
+                                "CA",
+                                "CO",
+                                "CT",
+                                "DE",
+                                "DC",
+                                "FL",
+                                "GA",
+                                "GU",
+                                "HI",
+                                "ID",
+                                "IL",
+                                "IN",
+                                "IA",
+                                "KS",
+                                "KY",
+                                "LA",
+                                "ME",
+                                "MD",
+                                "MA",
+                                "MI",
+                                "MN",
+                                "MS",
+                                "MO",
+                                "MT",
+                                "NE",
+                                "NV",
+                                "NH",
+                                "NJ",
+                                "NM",
+                                "NY",
+                                "NC",
+                                "ND",
+                                "OH",
+                                "OK",
+                                "OR",
+                                "PA",
+                                "PR",
+                                "RI",
+                                "SC",
+                                "SD",
+                                "TN",
+                                "TX",
+                                "UT",
+                                "VT",
+                                "VI",
+                                "VA",
+                                "WA",
+                                "WV",
+                                "WI",
+                                "WY",
+                                "PZ",
+                                "PK",
+                                "PH",
+                                "PS",
+                                "PM",
+                                "AN",
+                                "AM",
+                                "GM",
+                                "LS",
+                                "LM",
+                                "LH",
+                                "LC",
+                                "LE",
+                                "LO"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/geo+json": {},
+                            "application/ld+json": {},
+                            "application/atom+xml": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/alerts/active/region/{region}": {
+            "get": {
+                "description": "Returns active alerts for the given marine region",
+                "parameters": [
+                    {
+                        "name": "region",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "AL",
+                                "AT",
+                                "GL",
+                                "GM",
+                                "PA",
+                                "PI"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/geo+json": {},
+                            "application/ld+json": {},
+                            "application/atom+xml": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/glossary": {
+            "get": {
+                "description": "Returns glossary terms",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/ld+json": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/gridpoints/{wfo}/{x},{y}": {
+            "get": {
+                "description": "Returns raw numerical forecast data for a 2.5km grid area",
+                "parameters": [
+                    {
+                        "name": "wfo",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string",
+                            "format": "^\\w{3}$"
+                        }
+                    },
+                    {
+                        "name": "x",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 0
+                        }
+                    },
+                    {
+                        "name": "y",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 0
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/geo+json": {},
+                            "application/ld+json": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/gridpoints/{wfo}/{x},{y}/forecast": {
+            "get": {
+                "description": "Returns a textual forecast for a 2.5km grid area",
+                "parameters": [
+                    {
+                        "name": "wfo",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string",
+                            "format": "^\\w{3}$"
+                        }
+                    },
+                    {
+                        "name": "x",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 0
+                        }
+                    },
+                    {
+                        "name": "y",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 0
+                        }
+                    },
+                    {
+                        "name": "units",
+                        "in": "query",
+                        "description": "Use US customary or SI (metric) units in textual output",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "us",
+                                "si"
+                            ],
+                            "default": "us"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/geo+json": {},
+                            "application/ld+json": {},
+                            "application/vnd.noaa.dwml+xml": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/gridpoints/{wfo}/{x},{y}/forecast/hourly": {
+            "get": {
+                "description": "Returns a textual hourly forecast for a 2.5km grid area",
+                "parameters": [
+                    {
+                        "name": "wfo",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string",
+                            "format": "^\\w{3}$"
+                        }
+                    },
+                    {
+                        "name": "x",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 0
+                        }
+                    },
+                    {
+                        "name": "y",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 0
+                        }
+                    },
+                    {
+                        "name": "units",
+                        "in": "query",
+                        "description": "Use US customary or SI (metric) units in textual output",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "us",
+                                "si"
+                            ],
+                            "default": "us"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/geo+json": {},
+                            "application/ld+json": {},
+                            "application/vnd.noaa.dwml+xml": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/gridpoints/{wfo}/{x},{y}/stations": {
+            "get": {
+                "description": "Returns a list of observation stations usable for a given 2.5km grid area",
+                "parameters": [
+                    {
+                        "name": "wfo",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string",
+                            "format": "^\\w{3}$"
+                        }
+                    },
+                    {
+                        "name": "x",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 0
+                        }
+                    },
+                    {
+                        "name": "y",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 0
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/geo+json": {},
+                            "application/ld+json": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/icons/{set}/{timeOfDay}/{first}/{second}": {
+            "get": {
+                "description": "Returns a forecast icon",
+                "parameters": [
+                    {
+                        "name": "set",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "timeOfDay",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "first",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "second",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "size",
+                        "in": "query",
+                        "description": "Font size",
+                        "schema": {
+                            "anyOf": [
+                                {
+                                    "type": "string",
+                                    "enum": [
+                                        "small",
+                                        "medium",
+                                        "large"
+                                    ]
+                                },
+                                {
+                                    "type": "integer",
+                                    "minimum": 10,
+                                    "maximum": 500
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "name": "fontsize",
+                        "in": "query",
+                        "description": "Font size",
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 2,
+                            "maximum": 24
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "image/png": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/icons": {
+            "get": {
+                "description": "Returns a list of icon codes and textual descriptions",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/ld+json": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/thumbnails/satellite/{area}": {
+            "get": {
+                "description": "Returns a thumbnail image for a satellite region",
+                "parameters": [
+                    {
+                        "name": "area",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "image/jpeg": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/stations/{stationId}/observations": {
+            "get": {
+                "description": "Returns a list of observations for a given station",
+                "parameters": [
+                    {
+                        "name": "stationId",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "station",
+                        "in": "query",
+                        "description": "Station ID",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "start",
+                        "in": "query",
+                        "description": "Start date/time",
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    },
+                    {
+                        "name": "end",
+                        "in": "query",
+                        "description": "End date/time",
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limit",
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 500
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/geo+json": {},
+                            "application/ld+json": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/stations/{stationId}/observations/latest": {
+            "get": {
+                "description": "Returns the latest observation for a station",
+                "parameters": [
+                    {
+                        "name": "stationId",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "require_qc",
+                        "in": "query",
+                        "description": "Require QC",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/geo+json": {},
+                            "application/ld+json": {},
+                            "application/vnd.noaa.obs+xml": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/stations/{stationId}/observations/current": {
+            "get": {
+                "description": "Returns the latest observation for a station (use \u0027/latest\u0027 instead)",
+                "deprecated": true,
+                "parameters": [
+                    {
+                        "name": "stationId",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "require_qc",
+                        "in": "query",
+                        "description": "Require QC",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/geo+json": {},
+                            "application/ld+json": {},
+                            "application/vnd.noaa.obs+xml": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/stations/{stationId}/observations/{time}": {
+            "get": {
+                "description": "Returns a single observation",
+                "parameters": [
+                    {
+                        "name": "stationId",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "time",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/geo+json": {},
+                            "application/ld+json": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/stations": {
+            "get": {
+                "description": "Returns a list of observation stations",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "State abbreviation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "state",
+                        "in": "query",
+                        "description": "State/marine area code",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "AL",
+                                    "AK",
+                                    "AS",
+                                    "AR",
+                                    "AZ",
+                                    "CA",
+                                    "CO",
+                                    "CT",
+                                    "DE",
+                                    "DC",
+                                    "FL",
+                                    "GA",
+                                    "GU",
+                                    "HI",
+                                    "ID",
+                                    "IL",
+                                    "IN",
+                                    "IA",
+                                    "KS",
+                                    "KY",
+                                    "LA",
+                                    "ME",
+                                    "MD",
+                                    "MA",
+                                    "MI",
+                                    "MN",
+                                    "MS",
+                                    "MO",
+                                    "MT",
+                                    "NE",
+                                    "NV",
+                                    "NH",
+                                    "NJ",
+                                    "NM",
+                                    "NY",
+                                    "NC",
+                                    "ND",
+                                    "OH",
+                                    "OK",
+                                    "OR",
+                                    "PA",
+                                    "PR",
+                                    "RI",
+                                    "SC",
+                                    "SD",
+                                    "TN",
+                                    "TX",
+                                    "UT",
+                                    "VT",
+                                    "VI",
+                                    "VA",
+                                    "WA",
+                                    "WV",
+                                    "WI",
+                                    "WY"
+                                ]
+                            }
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limit",
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 500
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/geo+json": {},
+                            "application/ld+json": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/stations/radar": {
+            "get": {
+                "description": "Returns a list of radar stations",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/geo+json": {},
+                            "application/ld+json": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/stations/radar/{stationId}": {
+            "get": {
+                "description": "Returns metadata about a given radar station",
+                "parameters": [
+                    {
+                        "name": "stationId",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/geo+json": {},
+                            "application/ld+json": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/stations/{stationId}": {
+            "get": {
+                "description": "Returns metadata about a given observation station",
+                "parameters": [
+                    {
+                        "name": "stationId",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/geo+json": {},
+                            "application/ld+json": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/offices/{officeId}": {
+            "get": {
+                "description": "Returns metadata about a NWS forecast office",
+                "parameters": [
+                    {
+                        "name": "officeId",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/ld+json": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/offices/{officeId}/headlines/{headlineId}": {
+            "get": {
+                "description": "Returns a specific news headline for a given NWS office",
+                "parameters": [
+                    {
+                        "name": "officeId",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "headlineId",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/ld+json": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/offices/{officeId}/headlines": {
+            "get": {
+                "description": "Returns a list of news headlines for a given NWS office",
+                "parameters": [
+                    {
+                        "name": "officeId",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/ld+json": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/points/{point}": {
+            "get": {
+                "description": "Returns metadata about a given latitude/longitude point",
+                "parameters": [
+                    {
+                        "name": "point",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string",
+                            "format": "^(-?\\d+(?:\\.\\d+)?),(-?\\d+(?:\\.\\d+)?)$"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/geo+json": {},
+                            "application/ld+json": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/points/{point}/stations": {
+            "get": {
+                "description": "Returns a list of observation stations for a given point",
+                "parameters": [
+                    {
+                        "name": "point",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string",
+                            "format": "^(-?\\d+(?:\\.\\d+)?),(-?\\d+(?:\\.\\d+)?)$"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/geo+json": {},
+                            "application/ld+json": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/points/{point}/forecast": {
+            "get": {
+                "description": "Returns a textual forecast for a given point",
+                "deprecated": true,
+                "parameters": [
+                    {
+                        "name": "point",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string",
+                            "format": "^(-?\\d+(?:\\.\\d+)?),(-?\\d+(?:\\.\\d+)?)$"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/geo+json": {},
+                            "application/ld+json": {},
+                            "application/vnd.noaa.dwml+xml": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/points/{point}/forecast/hourly": {
+            "get": {
+                "description": "Returns a textual hourly forecast for a given point",
+                "deprecated": true,
+                "parameters": [
+                    {
+                        "name": "point",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string",
+                            "format": "^(-?\\d+(?:\\.\\d+)?),(-?\\d+(?:\\.\\d+)?)$"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/geo+json": {},
+                            "application/ld+json": {},
+                            "application/vnd.noaa.dwml+xml": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/products": {
+            "get": {
+                "description": "Returns a list of text products",
+                "parameters": [
+                    {
+                        "name": "location",
+                        "in": "query",
+                        "description": "Location id",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "start",
+                        "in": "query",
+                        "description": "Start time",
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    },
+                    {
+                        "name": "end",
+                        "in": "query",
+                        "description": "End time",
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    },
+                    {
+                        "name": "office",
+                        "in": "query",
+                        "description": "Issuing office",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "format": "^\\w{4}$"
+                            }
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "wmoid",
+                        "in": "query",
+                        "description": "WMO id code",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "format": "^[A-Z]{4}\\d{2}$"
+                            }
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "Product code",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "format": "^\\w{3}$"
+                            }
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limit",
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 500
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/ld+json": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/products/locations": {
+            "get": {
+                "description": "Returns a list of valid text product issuance locations",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/ld+json": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/products/types": {
+            "get": {
+                "description": "Returns a list of valid text product types and codes",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/ld+json": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/products/{productId}": {
+            "get": {
+                "description": "Returns a specific text product",
+                "parameters": [
+                    {
+                        "name": "productId",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/ld+json": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/products/types/{typeId}": {
+            "get": {
+                "description": "Returns a list of text products of a given type",
+                "parameters": [
+                    {
+                        "name": "typeId",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/ld+json": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/products/types/{typeId}/locations": {
+            "get": {
+                "description": "Returns a list of valid text product issuance locations for a given product type",
+                "parameters": [
+                    {
+                        "name": "typeId",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/ld+json": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/products/locations/{locationId}/types": {
+            "get": {
+                "description": "Returns a list of valid text product types for a given issuance location",
+                "parameters": [
+                    {
+                        "name": "locationId",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/ld+json": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/products/types/{typeId}/locations/{locationId}": {
+            "get": {
+                "description": "Returns a list of text products of a given type for a given issuance location",
+                "parameters": [
+                    {
+                        "name": "typeId",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "locationId",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/ld+json": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/zones": {
+            "get": {
+                "description": "Returns a list of zones",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "Zone ID (forecast or county)",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "format": "^\\w{2}[CZ]\\d{3}$"
+                            }
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "area",
+                        "in": "query",
+                        "description": "State/marine area code",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "AL",
+                                    "AK",
+                                    "AS",
+                                    "AR",
+                                    "AZ",
+                                    "CA",
+                                    "CO",
+                                    "CT",
+                                    "DE",
+                                    "DC",
+                                    "FL",
+                                    "GA",
+                                    "GU",
+                                    "HI",
+                                    "ID",
+                                    "IL",
+                                    "IN",
+                                    "IA",
+                                    "KS",
+                                    "KY",
+                                    "LA",
+                                    "ME",
+                                    "MD",
+                                    "MA",
+                                    "MI",
+                                    "MN",
+                                    "MS",
+                                    "MO",
+                                    "MT",
+                                    "NE",
+                                    "NV",
+                                    "NH",
+                                    "NJ",
+                                    "NM",
+                                    "NY",
+                                    "NC",
+                                    "ND",
+                                    "OH",
+                                    "OK",
+                                    "OR",
+                                    "PA",
+                                    "PR",
+                                    "RI",
+                                    "SC",
+                                    "SD",
+                                    "TN",
+                                    "TX",
+                                    "UT",
+                                    "VT",
+                                    "VI",
+                                    "VA",
+                                    "WA",
+                                    "WV",
+                                    "WI",
+                                    "WY",
+                                    "PZ",
+                                    "PK",
+                                    "PH",
+                                    "PS",
+                                    "PM",
+                                    "AN",
+                                    "AM",
+                                    "GM",
+                                    "LS",
+                                    "LM",
+                                    "LH",
+                                    "LC",
+                                    "LE",
+                                    "LO"
+                                ]
+                            }
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "region",
+                        "in": "query",
+                        "description": "Region code",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "AR",
+                                    "CR",
+                                    "ER",
+                                    "PR",
+                                    "SR",
+                                    "WR",
+                                    "AL",
+                                    "AT",
+                                    "GL",
+                                    "GM",
+                                    "PA",
+                                    "PI"
+                                ]
+                            }
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "Zone type",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "land",
+                                    "marine",
+                                    "forecast",
+                                    "public",
+                                    "coastal",
+                                    "offshore",
+                                    "fire",
+                                    "county"
+                                ]
+                            }
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "point",
+                        "in": "query",
+                        "description": "Point (latitude,longitude)",
+                        "schema": {
+                            "type": "string",
+                            "format": "^(-?\\d+(?:\\.\\d+)?),(-?\\d+(?:\\.\\d+)?)$"
+                        }
+                    },
+                    {
+                        "name": "include_geometry",
+                        "in": "query",
+                        "description": "Include geometry in results (true/false)",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "effective",
+                        "in": "query",
+                        "description": "Effective date/time",
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/geo+json": {},
+                            "application/ld+json": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/zones/{type}": {
+            "get": {
+                "description": "Returns a list of zones of a given type",
+                "parameters": [
+                    {
+                        "name": "type",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "land",
+                                "marine",
+                                "forecast",
+                                "public",
+                                "coastal",
+                                "offshore",
+                                "fire",
+                                "county"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "Zone ID (forecast or county)",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "format": "^\\w{2}[CZ]\\d{3}$"
+                            }
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "area",
+                        "in": "query",
+                        "description": "State/marine area code",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "AL",
+                                    "AK",
+                                    "AS",
+                                    "AR",
+                                    "AZ",
+                                    "CA",
+                                    "CO",
+                                    "CT",
+                                    "DE",
+                                    "DC",
+                                    "FL",
+                                    "GA",
+                                    "GU",
+                                    "HI",
+                                    "ID",
+                                    "IL",
+                                    "IN",
+                                    "IA",
+                                    "KS",
+                                    "KY",
+                                    "LA",
+                                    "ME",
+                                    "MD",
+                                    "MA",
+                                    "MI",
+                                    "MN",
+                                    "MS",
+                                    "MO",
+                                    "MT",
+                                    "NE",
+                                    "NV",
+                                    "NH",
+                                    "NJ",
+                                    "NM",
+                                    "NY",
+                                    "NC",
+                                    "ND",
+                                    "OH",
+                                    "OK",
+                                    "OR",
+                                    "PA",
+                                    "PR",
+                                    "RI",
+                                    "SC",
+                                    "SD",
+                                    "TN",
+                                    "TX",
+                                    "UT",
+                                    "VT",
+                                    "VI",
+                                    "VA",
+                                    "WA",
+                                    "WV",
+                                    "WI",
+                                    "WY",
+                                    "PZ",
+                                    "PK",
+                                    "PH",
+                                    "PS",
+                                    "PM",
+                                    "AN",
+                                    "AM",
+                                    "GM",
+                                    "LS",
+                                    "LM",
+                                    "LH",
+                                    "LC",
+                                    "LE",
+                                    "LO"
+                                ]
+                            }
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "region",
+                        "in": "query",
+                        "description": "Region code",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "AR",
+                                    "CR",
+                                    "ER",
+                                    "PR",
+                                    "SR",
+                                    "WR",
+                                    "AL",
+                                    "AT",
+                                    "GL",
+                                    "GM",
+                                    "PA",
+                                    "PI"
+                                ]
+                            }
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "Zone type",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "land",
+                                    "marine",
+                                    "forecast",
+                                    "public",
+                                    "coastal",
+                                    "offshore",
+                                    "fire",
+                                    "county"
+                                ]
+                            }
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "point",
+                        "in": "query",
+                        "description": "Point (latitude,longitude)",
+                        "schema": {
+                            "type": "string",
+                            "format": "^(-?\\d+(?:\\.\\d+)?),(-?\\d+(?:\\.\\d+)?)$"
+                        }
+                    },
+                    {
+                        "name": "include_geometry",
+                        "in": "query",
+                        "description": "Include geometry in results (true/false)",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "effective",
+                        "in": "query",
+                        "description": "Effective date/time",
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/geo+json": {},
+                            "application/ld+json": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/zones/{type}/{zoneId}": {
+            "get": {
+                "description": "Returns metadata about a given zone",
+                "parameters": [
+                    {
+                        "name": "type",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "forecast",
+                                "county",
+                                "fire",
+                                "cg"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "zoneId",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "effective",
+                        "in": "query",
+                        "description": "Effective date/time",
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/geo+json": {},
+                            "application/ld+json": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/zones/{type}/{zoneId}/forecast": {
+            "get": {
+                "description": "Returns the current zone forecast for a given zone",
+                "parameters": [
+                    {
+                        "name": "type",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "zoneId",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/geo+json": {},
+                            "application/ld+json": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/zones/forecast/{zoneId}/observations": {
+            "get": {
+                "description": "Returns a list of observations for a given zone",
+                "parameters": [
+                    {
+                        "name": "zoneId",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "start",
+                        "in": "query",
+                        "description": "Start date/time",
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    },
+                    {
+                        "name": "end",
+                        "in": "query",
+                        "description": "End date/time",
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limit",
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 500
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/geo+json": {},
+                            "application/ld+json": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        },
+        "/zones/forecast/{zoneId}/stations": {
+            "get": {
+                "description": "Returns a list of observation stations for a given zone",
+                "parameters": [
+                    {
+                        "name": "zoneId",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/geo+json": {},
+                            "application/ld+json": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/Error"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Error": {
+                "description": "An API Problem (RFC7807) document",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "format": "uri",
+                        "default": "about:blank",
+                        "description": "A URI reference (RFC3986) that identifies the problem type"
+                    },
+                    "title": {
+                        "type": "string",
+                        "description": "A short, human-readable summary of the problem type"
+                    },
+                    "status": {
+                        "type": "number",
+                        "minimum": 100,
+                        "maximum": 999,
+                        "description": "The HTTP status code (RFC7231, Section 6) generated by the origin server for this occurrence of the problem"
+                    },
+                    "detail": {
+                        "type": "string",
+                        "description": "A human-readable explanation specific to this occurrence of the problem"
+                    },
+                    "instance": {
+                        "type": "string",
+                        "format": "uri",
+                        "description": "A URI reference that identifies the specific occurrence of the problem"
+                    },
+                    "correlationId": {
+                        "type": "string",
+                        "format": "uuid",
+                        "description": "A unique identifier for the request, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue."
+                    }
+                },
+                "required": [
+                    "title",
+                    "correlationId"
+                ],
+                "additionalProperties": true,
+                "example": {
+                    "title": "Unexpected Problem",
+                    "type": "https://api.weather.gov/problems/UnexpectedProblem",
+                    "status": 500,
+                    "detail": "An unexpected problem has occurred.",
+                    "instance": "https://api.weather.gov/requests/493c3a1d-f87e-407f-ae2c-24483f5aab63",
+                    "correlationId": "493c3a1d-f87e-407f-ae2c-24483f5aab63"
+                }
+            }
+        },
+        "responses": {
+            "Error": {
+                "description": "An error response",
+                "content": {
+                    "application/problem+json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Error"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

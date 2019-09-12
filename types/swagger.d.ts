@@ -8,6 +8,12 @@ export interface SwaggerSpec {
   definitions?: {
     [name: string]: SchemaDefinition;
   };
+  // FIXME: Support OpenAPI 3 patchy
+  components?: {
+    schemas?: {
+      [name: string]: SchemaDefinition;
+    };
+  };
 }
 export interface PathDefinition {
   get?: {
@@ -22,7 +28,14 @@ export interface ParameterObject {
   name: string;
   in: "query" | "header" | "path" | "formData" | "body";
   required?: boolean;
-  type: SchemaType;
+  type?: SchemaType;
+  // FIXME: Support OpenAPI 3 patchy
+  enum?: string[];
+  items?: ItemsObject;
+  schema?: SchemaObject;
+}
+export interface SchemaObject {
+  type?: SchemaType;
   enum?: string[];
   items?: ItemsObject;
 }

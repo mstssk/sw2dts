@@ -165,4 +165,29 @@ describe("CLI", () => {
       done();
     });
   });
+
+  // FIXME: Support OpenAPI 3 patchy
+  describe("Support OpenAPI 3", () => {
+    it("https://api.weather.gov/openapi.json", done => {
+      const srcPath = path.resolve(fixturesDir, "openapi3_weather-gov.json");
+      nexpect.spawn("node", [sw2dtsPath, srcPath]).run((err, stdout, exit) => {
+        const actual = stdout.join("\n") + "\n";
+        assert(actual);
+        assert(!err);
+        assert(exit === 0);
+        done();
+      });
+    });
+
+    it("Pet Store sample", done => {
+      const srcPath = path.resolve(fixturesDir, "openapi3_petstore.yaml");
+      nexpect.spawn("node", [sw2dtsPath, srcPath]).run((err, stdout, exit) => {
+        const actual = stdout.join("\n") + "\n";
+        assert(actual);
+        assert(!err);
+        assert(exit === 0);
+        done();
+      });
+    });
+  });
 });
