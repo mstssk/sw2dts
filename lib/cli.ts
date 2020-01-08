@@ -6,8 +6,6 @@ import { convert } from "./converter";
 const pkg = require("../package.json");
 
 interface RootOptions {
-  /** @deprecated */
-  stdin: boolean;
   output: string[];
   namespace: string[];
   withQuery: boolean;
@@ -21,18 +19,7 @@ const root = commandpost
   .option("-s, --sort-props", "Sort type properties order.")
   .option("-o, --output <output_filename>", "Output to file.")
   .option("-n, --namespace <namespace>", "Use namespace.")
-  .option("--stdin", "[Deprecated] Input from standard input.")
   .action(async (opts, args) => {
-    // TODO Delete '--stdin' option.
-    if (opts.stdin) {
-      console.warn("'--stdin' option is deprecated.");
-    }
-    if (args.input_filename && opts.stdin) {
-      process.stderr.write("Invalid parameters!\n");
-      process.exit(1);
-      return;
-    }
-
     const outputFilename = opts.output[0];
     const namespace = opts.namespace[0];
     const withQuery = opts.withQuery;
