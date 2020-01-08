@@ -1,4 +1,5 @@
 import * as fs from "fs";
+import * as util from "util";
 import * as commandpost from "commandpost";
 import * as YAML from "js-yaml";
 import { convert } from "./converter";
@@ -56,9 +57,7 @@ function fromStdin() {
 }
 
 function fromFile(inputFileName: string) {
-  return new Promise<string>((resolve, reject) => {
-    resolve(fs.readFileSync(inputFileName, { encoding: "utf-8" }));
-  });
+  return util.promisify(fs.readFile)(inputFileName, { encoding: "utf-8" });
 }
 
 function errorHandler(err: Error) {
@@ -67,7 +66,7 @@ function errorHandler(err: Error) {
     process.exit(0);
     return;
   }
-  if (err instanceof Error) {
+  if (err.stack) {
     console.error(err.stack);
   } else if (err) {
     console.error(err);
