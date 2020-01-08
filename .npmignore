@@ -13,6 +13,7 @@ example/
 .circleci/
 tsconfig.json
 tslint.json
+.eslintignore
 .eslintrc.json
 .prettierrc.json
 .DS_Store
