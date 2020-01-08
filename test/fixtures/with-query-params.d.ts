@@ -1,10 +1,10 @@
-export interface ApiDummyModel {
+declare interface ApiDummyModel {
     required?: boolean;
     cursor?: string;
     limit?: number;
     offset?: number;
 }
-export interface Dummy {
+declare interface Dummy {
     image?: Image;
     createdAt?: string; // date-time
     id?: string; // int64
@@ -16,7 +16,7 @@ export interface Dummy {
     ids?: string /* int64 */ [];
     status?: "placed" | "approved" | "delivered";
 }
-export interface Image {
+declare interface Image {
     createdAt?: string; // date-time
     fileSize?: number; // int32
     height?: number; // int32
@@ -25,5 +25,5 @@ export interface Image {
     url?: string;
     width?: number; // int32
 }
-export interface Noop {
+declare interface Noop {
 }

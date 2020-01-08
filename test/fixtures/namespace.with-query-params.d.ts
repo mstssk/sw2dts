@@ -6,7 +6,7 @@ declare namespace foo {
         offset?: number;
     }
     export interface Dummy {
-        image?: Image;
+        image?: foo.Image;
         createdAt?: string; // date-time
         id?: string; // int64
         kind?: string;

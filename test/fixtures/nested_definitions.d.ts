@@ -1,13 +1,13 @@
-export interface User {
+declare interface User {
     id: number;
     name?: string;
     email: string;
 }
-export interface UserResponse {
+declare interface UserResponse {
     data: User;
     updatedAt?: string;
 }
-export interface UserUpdateResponse {
+declare interface UserUpdateResponse {
     data: User;
     updatedAt?: string;
 }

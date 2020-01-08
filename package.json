@@ -32,7 +32,7 @@
   "license": "MIT",
   "dependencies": {
     "commandpost": "^1.4.0",
-    "dtsgenerator": "^1.2.0",
+    "dtsgenerator": "^2.3.2",
     "js-yaml": "^3.13.1"
   },
   "devDependencies": {

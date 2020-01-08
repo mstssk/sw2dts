@@ -1,8 +1,8 @@
-export interface ErrorModel {
+declare interface ErrorModel {
     message: string;
     code: number;
 }
-export interface ExtendedErrorModel {
+declare interface ExtendedErrorModel {
     message: string;
     code: number;
     rootCause: string;
