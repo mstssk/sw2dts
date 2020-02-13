@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "module": "commonjs",
-        "target": "es5",
+        "target": "ES2018",
         "strict": true,
         "removeComments": false,
         "declaration": true,
@@ -9,7 +9,7 @@
         "noUnusedLocals": true,
         "esModuleInterop": true,
         "lib": [
-            "es6"
+            "ES2018"
         ]
     },
     "include": [
