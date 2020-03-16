@@ -36,23 +36,23 @@
     "js-yaml": "^3.13.1"
   },
   "devDependencies": {
-    "@types/js-yaml": "^3.12.1",
+    "@types/js-yaml": "^3.12.2",
     "@types/mkdirp": "^0.5.2",
     "@types/mocha": "^5.2.7",
     "@types/nexpect": "^0.4.30",
-    "@types/node": "^10.17.13",
+    "@types/node": "^10.17.17",
     "@types/rimraf": "^2.0.3",
-    "@typescript-eslint/eslint-plugin": "^2.14.0",
-    "@typescript-eslint/parser": "^2.14.0",
+    "@typescript-eslint/eslint-plugin": "^2.23.0",
+    "@typescript-eslint/parser": "^2.23.0",
     "conventional-changelog-cli": "^2.0.31",
     "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.9.0",
+    "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-prettier": "^3.1.2",
     "mkdirp": "^0.5.1",
     "mocha": "^6.2.2",
     "nexpect": "^0.5.0",
     "prettier": "^1.19.1",
     "rimraf": "^2.7.1",
-    "typescript": "^3.7.5"
+    "typescript": "^3.8.3"
   }
 }
