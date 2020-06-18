@@ -1,3 +1,8 @@
+## [2.6.3](https://github.com/mstssk/sw2dts/compare/v2.6.2...v2.6.3) (2020-06-18)
+
+* Updates dependencies for some security fixes.
+* Drop support Node.js 8 and Node.js 11.
+
 ## [2.6.2](https://github.com/mstssk/sw2dts/compare/v2.6.1...v2.6.2) (2019-06-05)
 
 
