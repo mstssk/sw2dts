@@ -39,7 +39,7 @@ const root = commandpost
     const sortProps = opts.sortProps;
 
     const input = await (args.input_filename ? fromFile(args.input_filename) : fromStdin());
-    const model = await convert(YAML.safeLoad(input), { namespace, withQuery, sortProps });
+    const model = await convert(<object>YAML.safeLoad(input), { namespace, withQuery, sortProps });
 
     if (outputFilename) {
       fs.writeFileSync(outputFilename, model);
