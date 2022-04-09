@@ -1,4 +1,6 @@
 version: 2.1
+orbs:
+  node: circleci/node@4.7.0
 
 workflows:
   build_each_env:
@@ -17,7 +19,7 @@ jobs:
         type: integer
         default: 14
     docker:
-      - image: circleci/node:<< parameters.node_ver >>
+      - image: cimg/node:<< parameters.node_ver >>
     steps:
       - checkout
       - restore_cache:
