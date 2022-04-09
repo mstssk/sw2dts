@@ -7,17 +7,17 @@ workflows:
     jobs: # https://nodejs.org/ja/about/releases/
       - build:
           name: Node.js 14
-          node_ver: 14 # EOL: 2023-04-30 (LTS)
+          node_ver: "14.19" # EOL: 2023-04-30 (LTS)
       - build:
           name: Node.js 16
-          node_ver: 16 # EOL: 2024-04-30 (LTS)
+          node_ver: lts # EOL: 2024-04-30 (LTS)
 
 jobs:
   build:
     parameters:
       node_ver:
-        type: integer
-        default: 14
+        type: string
+        default: lts
     docker:
       - image: cimg/node:<< parameters.node_ver >>
     steps:
