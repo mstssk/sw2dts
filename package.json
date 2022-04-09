@@ -33,10 +33,10 @@
   "dependencies": {
     "commandpost": "^1.4.0",
     "dtsgenerator": "^1.2.0",
-    "js-yaml": "^3.13.1"
+    "js-yaml": "^4.1.0"
   },
   "devDependencies": {
-    "@types/js-yaml": "^3.12.1",
+    "@types/js-yaml": "^4.0.5",
     "@types/mkdirp": "^0.5.2",
     "@types/mocha": "^8.0.0",
     "@types/nexpect": "^0.4.30",
