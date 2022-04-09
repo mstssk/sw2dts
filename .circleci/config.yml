@@ -4,21 +4,18 @@ workflows:
   build_each_env:
     jobs: # https://nodejs.org/ja/about/releases/
       - build:
-          name: Node.js 10
-          node_ver: 10 # EOL: 2021-04-01 (LTS)
+          name: Node.js 14
+          node_ver: 14 # EOL: 2023-04-30 (LTS)
       - build:
-          name: Node.js 12
-          node_ver: 12 # EOL: 2022-04-01 (LTS)
-      - build:
-          name: Node.js 13
-          node_ver: 13 # EOL: 2020-06-01
+          name: Node.js 16
+          node_ver: 16 # EOL: 2024-04-30 (LTS)
 
 jobs:
   build:
     parameters:
       node_ver:
         type: integer
-        default: 12
+        default: 14
     docker:
       - image: circleci/node:<< parameters.node_ver >>
     steps:
