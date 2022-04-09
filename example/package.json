@@ -14,10 +14,10 @@
   },
   "author": "mstssk",
   "license": "MIT",
-  "devDependencies": {
-    "typescript": "^3.7.4"
-  },
   "dependencies": {
     "sw2dts": "file:.."
+  },
+  "devDependencies": {
+    "typescript": "^4.6.3"
   }
 }
