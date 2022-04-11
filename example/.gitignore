@@ -1,3 +1,4 @@
 node_modules/
 gen/
 *.js
+package-lock.json
